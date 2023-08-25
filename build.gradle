@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+group 'org.sunlightdev'
+version countBuildNumber()
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    //from(zipTree("API/json.jar"))
+    from {
+        subprojects.collect { it.sourceSets.main.output }
+    }
+    /*manifest(({
+        attributes 'Main-Class': 'org.sunlighdev.CoreUpdater'
+    } as Closure<?>)) */
+    from(files("build-count.properties"))
+    from(files("hash.txt"))
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def countBuildNumber() {
+    def buildCount = 0
+
+    if (file('build-count.properties').exists()) {
+        def properties = new Properties()
+        file('build-count.properties').withInputStream { properties.load(it) }
+        buildCount = properties.getProperty('count')?.toInteger() ?: 0
+    }
+
+    buildCount++
+
+    def properties = new Properties()
+    properties.setProperty('count', buildCount.toString())
+    file('build-count.properties').withOutputStream { properties.store(it, null) }
+
+    buildCount
+}
