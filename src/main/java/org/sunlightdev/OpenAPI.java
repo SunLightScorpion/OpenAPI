@@ -10,5 +10,12 @@ https://github.com/NightDev701
 
 */
 
+import org.sunlightdev.crypto.CryptoManager;
+
 public class OpenAPI {
+
+    public static CryptoManager getCryptoManager(String key){
+        return new CryptoManager(key);
+    }
+
 }
