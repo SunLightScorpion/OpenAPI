@@ -21,7 +21,7 @@ public class CryptoManager {
         this.ENCRYPTION_KEY = key;
     }
 
-    private String encrypt(String plainText) throws Exception {
+    public String encrypt(String plainText) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(ENCRYPTION_KEY.getBytes(), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -29,7 +29,7 @@ public class CryptoManager {
         return new String(encryptedBytes);
     }
 
-    private String decrypt(String encryptedText) throws Exception {
+    public String decrypt(String encryptedText) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(ENCRYPTION_KEY.getBytes(), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
