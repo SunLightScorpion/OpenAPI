@@ -19,7 +19,7 @@ public class CryptoManager {
 
     String ENCRYPTION_KEY;
 
-    public CryptoManager(String key){
+    public CryptoManager(String key) {
         this.ENCRYPTION_KEY = key;
     }
 
