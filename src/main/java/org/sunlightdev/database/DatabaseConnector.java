@@ -82,7 +82,14 @@ public class DatabaseConnector {
     }
 
     public boolean isConnected(){
-        return connection != null;
+        if(connection == null){
+            return false;
+        }
+        try {
+            return !connection.isClosed();
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     public int getPort() {
