@@ -20,6 +20,7 @@ import org.sunlightdev.key.ValueKey;
 
 import java.util.UUID;
 
+/* main api class */
 public class OpenAPI {
 
     /* encrypt and decrypt strings */
