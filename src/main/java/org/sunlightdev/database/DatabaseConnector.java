@@ -42,7 +42,7 @@ public class DatabaseConnector {
     }
 
     public void connect() {
-        System.out.println("Connect to database, with the type \"" + databaseType + "\"!");
+        System.out.println("Connect to database, with the type \"" + databaseType.name() + "\"!");
         try {
             if (databaseType == DatabaseType.MYSQL) {
                 connection = DriverManager.getConnection("jdbc:mysql://" +
