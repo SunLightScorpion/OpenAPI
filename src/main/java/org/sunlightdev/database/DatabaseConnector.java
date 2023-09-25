@@ -85,7 +85,7 @@ public class DatabaseConnector {
             PreparedStatement statement = connection.prepareStatement(command);
             statement.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 
