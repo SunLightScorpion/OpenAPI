@@ -17,13 +17,13 @@ import java.sql.*;
 
 public class DatabaseConnector {
 
+    private static int port;
     private final String ip;
     private final String user;
     private final String password;
     private final String database;
     private final String table;
     private final DatabaseType databaseType;
-    private static int port;
     private Connection connection;
 
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {

@@ -11,11 +11,11 @@ public class HttpRequestHandler {
     private final String url;
     private String body;
 
-    public HttpRequestHandler(String url){
+    public HttpRequestHandler(String url) {
         this.url = url;
     }
 
-    public void request(){
+    public void request() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))

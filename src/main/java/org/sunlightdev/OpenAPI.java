@@ -25,8 +25,8 @@ public class OpenAPI {
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
         return new DatabaseConnector(formular, type);
     }
-    
-    public static HttpRequestHandler getRequestHandler(String url){
+
+    public static HttpRequestHandler getRequestHandler(String url) {
         return new HttpRequestHandler(url);
     }
 
