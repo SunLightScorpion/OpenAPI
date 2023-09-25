@@ -42,6 +42,7 @@ public class DatabaseConnector {
     }
 
     public void connect() {
+        System.out.println("Connect to database, with the type \"" + databaseType + "\"!");
         try {
             if (databaseType == DatabaseType.MYSQL) {
                 connection = DriverManager.getConnection("jdbc:mysql://" +
@@ -54,6 +55,7 @@ public class DatabaseConnector {
                         "?reWriteBatchedInserts=true" +
                         "&charSet=utf-8", user, password);
             }
+            System.out.println("Connected to database!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
