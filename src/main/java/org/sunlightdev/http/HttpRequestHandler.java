@@ -9,6 +9,7 @@ import java.net.http.HttpResponse;
 public class HttpRequestHandler {
 
     String url;
+    String body;
 
     public HttpRequestHandler(String url){
         this.url = url;
@@ -23,12 +24,17 @@ public class HttpRequestHandler {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String responseBody = response.body();
+            body = responseBody;
 
             System.out.println("Answer: " + responseBody);
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getBody() {
+        return body;
     }
 
 }
