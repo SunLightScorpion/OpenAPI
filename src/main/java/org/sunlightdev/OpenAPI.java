@@ -25,8 +25,8 @@ import java.util.UUID;
 public class OpenAPI {
 
     /* encrypt and decrypt strings */
-    public static CryptoManager getCryptoManager(String key) {
-        return new CryptoManager(key);
+    public static CryptoManager getCryptoManager(String value) {
+        return new CryptoManager(value);
     }
 
     /* manage database connections and command easy */
