@@ -54,7 +54,7 @@ public class DatabaseConnector {
                         "&charSet=utf-8", user, password);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         System.out.println("Table: " + table);
     }
@@ -64,7 +64,7 @@ public class DatabaseConnector {
             try {
                 connection.close();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
@@ -76,7 +76,8 @@ public class DatabaseConnector {
             result.next();
             return result.getObject(data);
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            ex.printStackTrace();
+            return null;
         }
     }
 
@@ -85,7 +86,7 @@ public class DatabaseConnector {
             PreparedStatement statement = connection.prepareStatement(command);
             statement.executeUpdate();
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            ex.printStackTrace();
         }
     }
 
