@@ -17,14 +17,14 @@ import java.util.Base64;
 
 public class CryptoManager {
 
-    String ENCRYPTION_KEY;
+    private final String encryptionKey;
 
-    public CryptoManager(String key) {
-        this.ENCRYPTION_KEY = key;
+    public CryptoManager(String encryptionKey) {
+        this.encryptionKey = encryptionKey;
     }
 
     public String encrypt(String plainText) throws Exception {
-        SecretKeySpec secretKey = new SecretKeySpec(this.ENCRYPTION_KEY.getBytes(StandardCharsets.UTF_8), "AES");
+        SecretKeySpec secretKey = new SecretKeySpec(this.encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedBytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
@@ -32,7 +32,7 @@ public class CryptoManager {
     }
 
     public String decrypt(String encryptedText) throws Exception {
-        SecretKeySpec secretKey = new SecretKeySpec(this.ENCRYPTION_KEY.getBytes(StandardCharsets.UTF_8), "AES");
+        SecretKeySpec secretKey = new SecretKeySpec(this.encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedText);
