@@ -71,11 +71,11 @@ public class DatabaseConnector {
         }
     }
 
-    public Object getRow(){
+    public Object getDatabaseStatement(String command){
         return "";
     }
 
-    public void execute(){}
+    public void executeDatabaseStatement(String command){}
 
     public Connection getConnection() {
         return connection;
