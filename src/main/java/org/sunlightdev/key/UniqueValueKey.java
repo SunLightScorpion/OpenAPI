@@ -18,10 +18,12 @@ public class UniqueValueKey<T extends UUID> implements BaseKey {
 
     T key;
 
+    /* create key */
     private UniqueValueKey(T key) {
         this.key = key;
     }
 
+    /* read value */
     public static UniqueValueKey<UUID> getKey(UUID key) {
         return new UniqueValueKey<>(key);
     }

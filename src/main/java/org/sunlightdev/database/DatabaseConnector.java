@@ -41,6 +41,7 @@ public class DatabaseConnector {
         }
     }
 
+    /* connect to database */
     public void connect() {
         System.out.println("Connect to database, with the type \"" + databaseType.name() + "\"!");
         try {
@@ -62,6 +63,7 @@ public class DatabaseConnector {
         System.out.println("Table: " + table);
     }
 
+    /* close connection */
     public void close() {
         if (isConnected()) {
             try {
@@ -73,6 +75,7 @@ public class DatabaseConnector {
         }
     }
 
+    /* read value from database */
     public Object getDatabaseStatement(String command, String data) {
         try {
             PreparedStatement statement = connection.prepareStatement(command);
@@ -85,6 +88,7 @@ public class DatabaseConnector {
         }
     }
 
+    /* execute action to dat */
     public void executeDatabaseStatement(String command) {
         try {
             PreparedStatement statement = connection.prepareStatement(command);
@@ -94,6 +98,7 @@ public class DatabaseConnector {
         }
     }
 
+    /* check if connected */
     public boolean isConnected() {
         if (connection == null) {
             return false;
@@ -106,10 +111,12 @@ public class DatabaseConnector {
         }
     }
 
+    /* get port */
     public int getPort() {
         return port;
     }
 
+    /* set port */
     public void setPort(int port) {
         this.port = port;
     }

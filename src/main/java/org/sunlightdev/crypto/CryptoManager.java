@@ -23,6 +23,7 @@ public class CryptoManager {
         this.encryptionKey = encryptionKey;
     }
 
+    /* encrypt data */
     public String encrypt(String plainText) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(this.encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -31,6 +32,7 @@ public class CryptoManager {
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
+    /* decrypt data */
     public String decrypt(String encryptedText) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(this.encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");

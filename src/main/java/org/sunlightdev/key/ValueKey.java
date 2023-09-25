@@ -20,10 +20,12 @@ public class ValueKey<T extends String> implements BaseKey {
         this.key = key;
     }
 
+    /* create key */
     public static ValueKey<String> getKey(Object key) {
         return new ValueKey<>(key.toString());
     }
 
+    /* read value */
     @Override
     public Object baseValue() {
         return key;
