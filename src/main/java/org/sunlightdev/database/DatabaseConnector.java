@@ -100,6 +100,7 @@ public class DatabaseConnector {
         try {
             return !connection.isClosed();
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }
