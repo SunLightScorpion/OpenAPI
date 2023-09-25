@@ -23,7 +23,7 @@ public class DatabaseConnector {
     private final String database;
     private final String table;
     private final DatabaseType databaseType;
-    private int port;
+    private static int port;
     private Connection connection;
 
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {
@@ -35,9 +35,9 @@ public class DatabaseConnector {
         this.databaseType = databaseType;
 
         if (databaseType == DatabaseType.MYSQL) {
-            this.port = 3306;
+            setPort(3306);
         } else if (databaseType == DatabaseType.POSTGRESQL) {
-            this.port = 5432;
+            setPort(5432);
         }
     }
 
