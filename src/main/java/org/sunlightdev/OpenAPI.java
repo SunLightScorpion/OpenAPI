@@ -11,11 +11,18 @@ https://github.com/NightDev701
 */
 
 import org.sunlightdev.crypto.CryptoManager;
+import org.sunlightdev.database.DatabaseConnector;
+import org.sunlightdev.database.form.DatabaseFormular;
+import org.sunlightdev.database.type.DatabaseType;
 
 public class OpenAPI {
 
     public static CryptoManager getCryptoManager(String key) {
         return new CryptoManager(key);
+    }
+
+    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type){
+        return new DatabaseConnector(formular.ip(), formular.user(), formular.password(), formular.database(), formular.table(), type);
     }
 
 }
