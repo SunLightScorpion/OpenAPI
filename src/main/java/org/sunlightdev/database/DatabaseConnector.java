@@ -26,22 +26,6 @@ public class DatabaseConnector {
     private int port;
     private Connection connection;
 
-    @Deprecated
-    public DatabaseConnector(String ip, String user, String password, String database, String table, DatabaseType databaseType) {
-        this.ip = ip;
-        this.user = user;
-        this.password = password;
-        this.database = database;
-        this.table = table;
-        this.databaseType = databaseType;
-
-        if (databaseType == DatabaseType.MYSQL) {
-            this.port = 3306;
-        } else if (databaseType == DatabaseType.POSTGRESQL) {
-            this.port = 5432;
-        }
-    }
-
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {
         this.ip = formular.ip();
         this.user = formular.user();
