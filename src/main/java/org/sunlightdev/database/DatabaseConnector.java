@@ -89,10 +89,6 @@ public class DatabaseConnector {
         }
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
     public boolean isConnected() {
         if (connection == null) {
             return false;
