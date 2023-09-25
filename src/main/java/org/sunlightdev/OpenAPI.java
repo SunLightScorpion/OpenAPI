@@ -22,7 +22,7 @@ public class OpenAPI {
     }
 
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
-        return new DatabaseConnector(formular.ip(), formular.user(), formular.password(), formular.database(), formular.table(), type);
+        return new DatabaseConnector(formular, type);
     }
 
 }
