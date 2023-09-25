@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class HttpRequestHandler {
 
-    private String url;
+    private final String url;
     private String body;
 
     public HttpRequestHandler(String url){
@@ -23,8 +23,7 @@ public class HttpRequestHandler {
 
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            String responseBody = response.body();
-            this.body = responseBody;
+            this.body = response.body();
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
