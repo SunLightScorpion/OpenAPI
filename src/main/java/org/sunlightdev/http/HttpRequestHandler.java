@@ -26,8 +26,6 @@ public class HttpRequestHandler {
             String responseBody = response.body();
             body = responseBody;
 
-            System.out.println("Answer: " + responseBody);
-
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
