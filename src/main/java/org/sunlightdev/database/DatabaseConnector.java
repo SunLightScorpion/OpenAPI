@@ -66,6 +66,7 @@ public class DatabaseConnector {
         if (isConnected()) {
             try {
                 connection.close();
+                System.out.println("Connection closed");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
