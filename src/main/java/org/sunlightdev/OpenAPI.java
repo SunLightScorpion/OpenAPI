@@ -21,7 +21,7 @@ public class OpenAPI {
         return new CryptoManager(key);
     }
 
-    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type){
+    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
         return new DatabaseConnector(formular.ip(), formular.user(), formular.password(), formular.database(), formular.table(), type);
     }
 
