@@ -12,7 +12,7 @@ https://github.com/NightDev701
 
 import org.sunlightdev.crypto.CryptoManager;
 import org.sunlightdev.database.DatabaseConnector;
-import org.sunlightdev.database.form.DatabaseFormular;
+import org.sunlightdev.database.formular.DatabaseFormular;
 import org.sunlightdev.database.type.DatabaseType;
 import org.sunlightdev.http.HttpRequestHandler;
 
