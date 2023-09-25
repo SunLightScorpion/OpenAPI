@@ -61,6 +61,22 @@ public class DatabaseConnector {
         System.out.println("Table: "+table);
     }
 
+    public void close(){
+        if(isConnected()){
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public Object getRow(){
+        return "";
+    }
+
+    public void execute(){}
+
     public Connection getConnection() {
         return connection;
     }
