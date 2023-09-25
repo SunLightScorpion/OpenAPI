@@ -46,12 +46,12 @@ public class DatabaseConnector {
         try {
             if (databaseType == DatabaseType.MYSQL) {
                 connection = DriverManager.getConnection("jdbc:mysql://" +
-                        ip + ":" + 3306 + "/" + database + "?autoReconnect=true" +
+                        ip + ":" + port + "/" + database + "?autoReconnect=true" +
                         "&characterEncoding=utf8&useUnicode=true" +
                         "&sessionVariables=storage_engine%3DInnoDB" +
                         "&interactiveClient=true&dontTrackOpenResources=true", user, password);
             } else if (databaseType == DatabaseType.POSTGRESQL) {
-                connection = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + 5432 + "/" + database +
+                connection = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + port + "/" + database +
                         "?reWriteBatchedInserts=true" +
                         "&charSet=utf-8", user, password);
             }
