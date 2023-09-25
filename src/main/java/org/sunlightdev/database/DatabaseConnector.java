@@ -19,6 +19,7 @@ import java.sql.SQLException;
 public class DatabaseConnector {
 
     private final String ip;
+    private int port;
     private final String user;
     private final String password;
     private final String database;
@@ -33,6 +34,12 @@ public class DatabaseConnector {
         this.database = database;
         this.table = table;
         this.databaseType = databaseType;
+
+        if(databaseType == DatabaseType.MYSQL){
+            this.port = 3306;
+        } else if(databaseType == DatabaseType.POSTGRESQL){
+            this.port = 5432;
+        }
     }
 
     public void connect(){
@@ -60,6 +67,14 @@ public class DatabaseConnector {
 
     public boolean isConnected(){
         return connection != null;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
 }
