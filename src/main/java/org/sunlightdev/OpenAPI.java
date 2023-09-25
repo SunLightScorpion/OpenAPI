@@ -10,6 +10,7 @@ https://github.com/NightDev701
 
 */
 
+import org.sunlightdev.base.BaseKey;
 import org.sunlightdev.crypto.CryptoManager;
 import org.sunlightdev.database.DatabaseConnector;
 import org.sunlightdev.database.formular.DatabaseFormular;
@@ -39,12 +40,12 @@ public class OpenAPI {
     }
 
     /* key to save values */
-    public static ValueKey<String> getValueKey(String value){
+    public static BaseKey getValueKey(String value){
         return ValueKey.getKey(value);
     }
 
     /* key to save uuid */
-    public static UniqueValueKey<UUID> getValueKey(UUID value){
+    public static BaseKey getValueKey(UUID value){
         return UniqueValueKey.getKey(value);
     }
 
