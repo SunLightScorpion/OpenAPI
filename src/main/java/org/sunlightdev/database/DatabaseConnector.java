@@ -36,7 +36,6 @@ public class DatabaseConnector {
     }
 
     public void connect(){
-
         try {
             if(databaseType == DatabaseType.MYSQL){
                 connection = DriverManager.getConnection("jdbc:mysql://" +
@@ -52,6 +51,7 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("Table: "+table);
     }
 
     public Connection getConnection() {
