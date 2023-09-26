@@ -1,4 +1,4 @@
-package org.sunlightdev.http;
+package pl.nightdev701.http;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,4 +1,4 @@
-package org.sunlightdev.database;
+package pl.nightdev701.database;
 
 /*
 
@@ -10,8 +10,8 @@ https://github.com/NightDev701
 
 */
 
-import org.sunlightdev.database.formular.DatabaseFormular;
-import org.sunlightdev.database.type.DatabaseType;
+import pl.nightdev701.database.formular.DatabaseFormular;
+import pl.nightdev701.database.type.DatabaseType;
 
 import java.sql.*;
 

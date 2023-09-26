@@ -1,4 +1,4 @@
-package org.sunlightdev.crypto;
+package pl.nightdev701.crypto;
 
 /*
 

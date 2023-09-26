@@ -1,4 +1,4 @@
-package org.sunlightdev;
+package pl.nightdev701;
 
 /*
 
@@ -10,14 +10,14 @@ https://github.com/NightDev701
 
 */
 
-import org.sunlightdev.base.BaseKey;
-import org.sunlightdev.crypto.CryptoManager;
-import org.sunlightdev.database.DatabaseConnector;
-import org.sunlightdev.database.formular.DatabaseFormular;
-import org.sunlightdev.database.type.DatabaseType;
-import org.sunlightdev.http.HttpRequestHandler;
-import org.sunlightdev.key.UniqueValueKey;
-import org.sunlightdev.key.ValueKey;
+import pl.nightdev701.base.BaseKey;
+import pl.nightdev701.crypto.CryptoManager;
+import pl.nightdev701.database.DatabaseConnector;
+import pl.nightdev701.database.formular.DatabaseFormular;
+import pl.nightdev701.database.type.DatabaseType;
+import pl.nightdev701.http.HttpRequestHandler;
+import pl.nightdev701.key.UniqueValueKey;
+import pl.nightdev701.key.ValueKey;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package org.sunlightdev.base;
+package pl.nightdev701.base;
 
 /*
 

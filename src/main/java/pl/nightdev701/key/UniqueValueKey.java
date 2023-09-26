@@ -1,4 +1,4 @@
-package org.sunlightdev.key;
+package pl.nightdev701.key;
 
 /*
 
@@ -10,7 +10,7 @@ https://github.com/NightDev701
 
 */
 
-import org.sunlightdev.base.BaseKey;
+import pl.nightdev701.base.BaseKey;
 
 import java.util.UUID;
 
