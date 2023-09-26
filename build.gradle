@@ -6,7 +6,7 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
-group 'org.sunlightdev'
+group 'pl.nightdev701'
 
 repositories {
     mavenCentral()
