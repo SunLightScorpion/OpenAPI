@@ -24,9 +24,6 @@ jar {
     from {
         subprojects.collect { it.sourceSets.main.output }
     }
-    /*manifest(({
-        attributes 'Main-Class': 'org.sunlighdev.CoreUpdater'
-    } as Closure<?>)) */
 }
 
 test {
