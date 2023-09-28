@@ -88,7 +88,7 @@ public class DatabaseConnector {
         }
     }
 
-    /* execute action to dat */
+    /* execute action to database */
     public void executeDatabaseStatement(String command) {
         try {
             PreparedStatement statement = connection.prepareStatement(command);
