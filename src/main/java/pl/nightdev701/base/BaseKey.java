@@ -10,7 +10,7 @@ https://github.com/NightDev701
 
 */
 
-/* base for keys */
+/** base for keys */
 public interface BaseKey {
 
     Object baseValue();

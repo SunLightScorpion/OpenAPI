@@ -12,8 +12,11 @@ https://github.com/NightDev701
 
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
+import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.sql.*;
+import java.util.logging.Level;
 
 public class DatabaseConnector {
 
@@ -23,6 +26,7 @@ public class DatabaseConnector {
     private final String password;
     private final String database;
     private final DatabaseType databaseType;
+    private final AbstractLogger logger;
     private Connection connection;
 
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {
@@ -32,6 +36,8 @@ public class DatabaseConnector {
         this.database = formular.database();
         this.databaseType = databaseType;
 
+        this.logger = new DefaultLogger();
+
         if (databaseType == DatabaseType.MYSQL) {
             setPort(3306);
         } else if (databaseType == DatabaseType.POSTGRESQL) {
@@ -39,9 +45,25 @@ public class DatabaseConnector {
         }
     }
 
-    /* connect to database */
+    public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, AbstractLogger logger) {
+        this.ip = formular.ip();
+        this.user = formular.user();
+        this.password = formular.password();
+        this.database = formular.database();
+        this.databaseType = databaseType;
+
+        this.logger = logger;
+
+        if (databaseType == DatabaseType.MYSQL) {
+            setPort(3306);
+        } else if (databaseType == DatabaseType.POSTGRESQL) {
+            setPort(5432);
+        }
+    }
+
+    /** connect to database */
     public void connect() throws SQLException {
-        System.out.println("Connect to database, with the type \"" + databaseType.name() + "\"!");
+        logger.log(Level.INFO,"Connect to database, with the type \"" + databaseType.name() + "\"!");
         if (databaseType == DatabaseType.MYSQL) {
             connection = DriverManager.getConnection("jdbc:mysql://" +
                     ip + ":" + port + "/" + database + "?autoReconnect=true" +
@@ -53,18 +75,18 @@ public class DatabaseConnector {
                     "?reWriteBatchedInserts=true" +
                     "&charSet=utf-8", user, password);
         }
-        System.out.println("Connected to database!");
+        logger.log(Level.INFO, "Connected to database!");
     }
 
-    /* close connection */
+    /** close connection */
     public void close() throws SQLException {
         if (isConnected()) {
             connection.close();
-            System.out.println("Connection closed");
+            logger.log(Level.INFO,"Connection closed");
         }
     }
 
-    /* read value from database */
+    /** read value from database */
     public Object getDatabaseStatement(String command, String data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(command);
         ResultSet result = statement.executeQuery();
@@ -72,31 +94,26 @@ public class DatabaseConnector {
         return result.getObject(data);
     }
 
-    /* execute action to database */
+    /** execute action to database */
     public void executeDatabaseStatement(String command) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(command);
         statement.executeUpdate();
     }
 
-    /* check if connected */
-    public boolean isConnected() {
+    /** check if connected */
+    public boolean isConnected() throws SQLException {
         if (connection == null) {
             return false;
         }
-        try {
-            return !connection.isClosed();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return !connection.isClosed();
     }
 
-    /* get port */
+    /** get port */
     public int getPort() {
         return port;
     }
 
-    /* set port */
+    /** set port */
     public void setPort(int port) {
         this.port = port;
     }
