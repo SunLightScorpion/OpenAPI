@@ -14,17 +14,23 @@ import pl.nightdev701.base.BaseKey;
 
 import java.util.UUID;
 
-/** uuid key  */
+/**
+ * uuid key
+ */
 public class UniqueValueKey<T extends UUID> implements BaseKey {
 
     T key;
 
-    /** create key */
+    /**
+     * create key
+     */
     private UniqueValueKey(T key) {
         this.key = key;
     }
 
-    /** read value */
+    /**
+     * read value
+     */
     public static UniqueValueKey<UUID> getKey(UUID key) {
         return new UniqueValueKey<>(key);
     }

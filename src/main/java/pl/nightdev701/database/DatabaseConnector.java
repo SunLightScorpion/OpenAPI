@@ -61,9 +61,11 @@ public class DatabaseConnector {
         }
     }
 
-    /** connect to database */
+    /**
+     * connect to database
+     */
     public void connect() throws SQLException {
-        logger.log(Level.INFO,"Connect to database, with the type \"" + databaseType.name() + "\"!");
+        logger.log(Level.INFO, "Connect to database, with the type \"" + databaseType.name() + "\"!");
         if (databaseType == DatabaseType.MYSQL) {
             connection = DriverManager.getConnection("jdbc:mysql://" +
                     ip + ":" + port + "/" + database + "?autoReconnect=true" +
@@ -78,15 +80,19 @@ public class DatabaseConnector {
         logger.log(Level.INFO, "Connected to database!");
     }
 
-    /** close connection */
+    /**
+     * close connection
+     */
     public void close() throws SQLException {
         if (isConnected()) {
             connection.close();
-            logger.log(Level.INFO,"Connection closed");
+            logger.log(Level.INFO, "Connection closed");
         }
     }
 
-    /** read value from database */
+    /**
+     * read value from database
+     */
     public Object getDatabaseStatement(String command, String data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(command);
         ResultSet result = statement.executeQuery();
@@ -94,13 +100,17 @@ public class DatabaseConnector {
         return result.getObject(data);
     }
 
-    /** execute action to database */
+    /**
+     * execute action to database
+     */
     public void executeDatabaseStatement(String command) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(command);
         statement.executeUpdate();
     }
 
-    /** check if connected */
+    /**
+     * check if connected
+     */
     public boolean isConnected() throws SQLException {
         if (connection == null) {
             return false;
@@ -108,12 +118,16 @@ public class DatabaseConnector {
         return !connection.isClosed();
     }
 
-    /** get port */
+    /**
+     * get port
+     */
     public int getPort() {
         return port;
     }
 
-    /** set port */
+    /**
+     * set port
+     */
     public void setPort(int port) {
         this.port = port;
     }

@@ -15,7 +15,9 @@ public class HttpRequestHandler {
         this.url = url;
     }
 
-    /** fire request */
+    /**
+     * fire request
+     */
     public void request() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -31,7 +33,9 @@ public class HttpRequestHandler {
         }
     }
 
-    /** read body */
+    /**
+     * read body
+     */
     public String getBody() {
         return body;
     }

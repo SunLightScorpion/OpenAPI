@@ -41,3 +41,5 @@ bin/
 .DS_Store
 
 /API
+/logs
+/src/main/java/test

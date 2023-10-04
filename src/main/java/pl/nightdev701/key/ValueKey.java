@@ -12,7 +12,9 @@ https://github.com/NightDev701
 
 import pl.nightdev701.base.BaseKey;
 
-/** string key  */
+/**
+ * string key
+ */
 public class ValueKey<T extends String> implements BaseKey {
 
     T key;
@@ -23,16 +25,18 @@ public class ValueKey<T extends String> implements BaseKey {
 
     /**
      * create key
+     *
      * @return key value
-     * */
+     */
     public static ValueKey<String> getKey(Object key) {
         return new ValueKey<>(key.toString());
     }
 
     /**
      * read value
+     *
      * @return key value
-     * */
+     */
     @Override
     public Object baseValue() {
         return key;
