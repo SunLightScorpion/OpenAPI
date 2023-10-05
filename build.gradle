@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation files("API/mysql-connector-j-8.1.0.jar")
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -20,7 +24,7 @@ java {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    //from(zipTree("API/json.jar"))
+    from(zipTree("API/mysql-connector-j-8.1.0.jar"))
     from {
         subprojects.collect { it.sourceSets.main.output }
     }
