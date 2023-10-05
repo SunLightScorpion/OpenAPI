@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class DefaultLogger extends AbstractLogger {
 
     @Override
-    public void log(Level level, String msg) {
+    public void log(Object level, String msg) {
 
         File logFolder = new File("logs");
 
@@ -30,7 +30,7 @@ public class DefaultLogger extends AbstractLogger {
         }
 
         Logger logger = Logger.getLogger("openapi");
-        logger.log(level, msg);
+        logger.log((Level) level, msg);
 
         String result = OpenAPI.getClockTime() + " | " + level + " | " + msg;
 

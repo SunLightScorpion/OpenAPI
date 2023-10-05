@@ -10,11 +10,9 @@ https://github.com/NightDev701
 
 */
 
-import java.util.logging.Level;
-
 public abstract class AbstractLogger {
 
-    public abstract void log(Level level, String msg);
+    public abstract void log(Object level, String msg);
 
 }
 
