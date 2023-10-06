@@ -10,17 +10,28 @@ https://github.com/NightDev701
 
 */
 
+import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.logger.standard.DefaultLogger;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.logging.Level;
 
 public class CryptoManager {
 
     private final String encryptionKey;
+    private final AbstractLogger logger;
 
     public CryptoManager(String encryptionKey) {
         this.encryptionKey = encryptionKey;
+        this.logger = new DefaultLogger();
+    }
+
+    public CryptoManager(String encryptionKey, AbstractLogger logger) {
+        this.encryptionKey = encryptionKey;
+        this.logger = logger;
     }
 
     /**
@@ -31,6 +42,9 @@ public class CryptoManager {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedBytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+
+        logger.log(Level.INFO, "String encrypted");
+
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
@@ -43,6 +57,9 @@ public class CryptoManager {
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedText);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+
+        logger.log(Level.INFO, "String decrypted");
+
         return new String(decryptedBytes, StandardCharsets.UTF_8);
     }
 

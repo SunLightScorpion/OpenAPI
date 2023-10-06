@@ -35,6 +35,8 @@ public class HttpRequestHandler {
      * fire request
      */
     public void request() {
+        logger.log(Level.INFO, "Send request to " + url);
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -44,8 +46,11 @@ public class HttpRequestHandler {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             this.body = response.body();
 
+            logger.log(Level.INFO, "Request send");
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            logger.log(Level.WARNING, "Request failed");
         }
     }
 

@@ -18,6 +18,7 @@ import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.http.HttpRequestHandler;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
+import pl.nightdev701.logger.AbstractLogger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,6 +36,13 @@ public class OpenAPI {
     }
 
     /**
+     * encrypt and decrypt strings with logger implementation
+     */
+    public static CryptoManager getCryptoManager(String value, AbstractLogger logger) {
+        return new CryptoManager(value, logger);
+    }
+
+    /**
      * manage database connections and command easy
      */
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
@@ -42,10 +50,24 @@ public class OpenAPI {
     }
 
     /**
+     * manage database connections and command easy with logger implementation
+     */
+    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type, AbstractLogger logger) {
+        return new DatabaseConnector(formular, type, logger);
+    }
+
+    /**
      * request http and handle it
      */
     public static HttpRequestHandler getRequestHandler(String url) {
         return new HttpRequestHandler(url);
+    }
+
+    /**
+     * request http and handle it with logger implementation
+     */
+    public static HttpRequestHandler getRequestHandler(String url, AbstractLogger logger) {
+        return new HttpRequestHandler(url, logger);
     }
 
     /**
