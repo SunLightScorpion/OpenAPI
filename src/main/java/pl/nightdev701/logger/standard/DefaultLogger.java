@@ -30,7 +30,7 @@ public class DefaultLogger extends AbstractLogger {
         }
 
         Logger logger = Logger.getLogger("openapi");
-        logger.log((Level) level, msg);
+        logger.log(Level.parse(level.toString()), msg);
 
         String result = OpenAPI.getClockTime() + " | " + level + " | " + msg;
 
