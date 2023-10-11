@@ -9,11 +9,22 @@ compileJava {
 group 'pl.nightdev701'
 
 repositories {
+    maven {
+        url 'https://jitpack.io'
+    }
+
     mavenCentral()
 }
 
 dependencies {
-    implementation files("API/mysql-connector-j-8.1.0.jar")
+    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+    implementation 'com.mysql:mysql-connector-j:8.1.0'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:42.6.0'
+
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc
+    implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
 }
 
 java {
