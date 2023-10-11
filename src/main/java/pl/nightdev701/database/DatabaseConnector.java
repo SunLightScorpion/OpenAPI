@@ -10,42 +10,71 @@ https://github.com/NightDev701
 
 */
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class DatabaseConnector {
 
-    private static int port;
     private final String ip;
     private final String user;
     private final String password;
     private final String database;
     private final DatabaseType databaseType;
     private final AbstractLogger logger;
-    private Connection connection;
+    private final String connectionURL;
+    private JdbcPooledConnectionSource connectionSource;
 
+    /**
+     * Creates a new instance of the DatabaseConnector
+     * 
+     * @param formular
+     * @param databaseType
+     */
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {
-        this.ip = formular.ip();
-        this.user = formular.user();
-        this.password = formular.password();
-        this.database = formular.database();
-        this.databaseType = databaseType;
-
-        this.logger = new DefaultLogger();
-
-        if (databaseType == DatabaseType.MYSQL) {
-            setPort(3306);
-        } else if (databaseType == DatabaseType.POSTGRESQL) {
-            setPort(5432);
-        }
+        this(formular, databaseType, new DefaultLogger());
     }
 
+    /**
+     * Creates a new instance of the DatabaseConnector with a custom port
+     * 
+     * @param formular
+     * @param databaseType
+     * @param port
+     */
+    public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, int port) {
+        this(formular, databaseType, port, new DefaultLogger());
+    }
+
+
+    /**
+     * Creates a new instance of the DatabaseConnector with a custom logger
+     * 
+     * @param formular
+     * @param databaseType
+     * @param logger
+     */
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, AbstractLogger logger) {
+        this(formular, databaseType, databaseType.getDefaultPort(), logger);
+    }
+
+    /**
+     * Creates a new instance of the DatabaseConnector with  a custom port and logger
+     * 
+     * @param formular
+     * @param databaseType
+     * @param port
+     * @param logger
+     */
+    public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, int port, AbstractLogger logger) {
         this.ip = formular.ip();
         this.user = formular.user();
         this.password = formular.password();
@@ -55,81 +84,57 @@ public class DatabaseConnector {
         this.logger = logger;
 
         if (databaseType == DatabaseType.MYSQL) {
-            setPort(3306);
+            connectionURL = "jdbc:mysql://" +
+                    ip + ":" + port + "/" + database + "?autoReconnect=true" +
+                    "&characterEncoding=utf8&useUnicode=true" +
+                    "&sessionVariables=storage_engine%3DInnoDB" +
+                    "&interactiveClient=true&dontTrackOpenResources=true";
         } else if (databaseType == DatabaseType.POSTGRESQL) {
-            setPort(5432);
+            connectionURL = "jdbc:postgresql://" + ip + ":" + port + "/" + database +
+                    "?reWriteBatchedInserts=true" +
+                    "&charSet=utf-8";
+        } else {
+            connectionURL = null;
         }
     }
 
     /**
-     * connect to database
+     * initialize connection
      */
-    public void connect() throws SQLException {
-        logger.log(Level.INFO, "Connect to database, with the type \"" + databaseType.name() + "\"!");
-        if (databaseType == DatabaseType.MYSQL) {
-            connection = DriverManager.getConnection("jdbc:mysql://" +
-                    ip + ":" + port + "/" + database + "?autoReconnect=true" +
-                    "&characterEncoding=utf8&useUnicode=true" +
-                    "&sessionVariables=storage_engine%3DInnoDB" +
-                    "&interactiveClient=true&dontTrackOpenResources=true", user, password);
-        } else if (databaseType == DatabaseType.POSTGRESQL) {
-            connection = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + port + "/" + database +
-                    "?reWriteBatchedInserts=true" +
-                    "&charSet=utf-8", user, password);
-        }
-        logger.log(Level.INFO, "Connected to database!");
+    public void initialize() throws SQLException {
+        logger.log(Level.INFO, "Initializing database connection, with the type \"" + databaseType.name() + "\"!");
+
+        connectionSource = new JdbcPooledConnectionSource(connectionURL);
+        connectionSource.setUsername(user);
+        connectionSource.setPassword(password);
     }
 
     /**
      * close connection
      */
-    public void close() throws SQLException {
-        if (isConnected()) {
-            connection.close();
-            logger.log(Level.INFO, "Connection closed");
-        }
+    public void close() throws Exception {
+        connectionSource.close();
+        logger.log(Level.INFO, "Connection closed");
     }
 
     /**
-     * read value from database
+     * Creates a table for a DatabaseTable class if no table already exists with the same name
+     *
+     * @param dataClass your DatabaseTable class
      */
-    public Object getDatabaseStatement(String command, String data) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(command);
-        ResultSet result = statement.executeQuery();
-        result.next();
-        return result.getObject(data);
+    public <T> int createTableIfNotExists(Class<T> dataClass) throws SQLException {
+        return TableUtils.createTableIfNotExists(connectionSource, dataClass);
     }
 
     /**
-     * execute action to database
+     * Creates a new Dao with which you can work
+     *
+     * @param clazz your DatabaseTable class
+     * @return new Dao
+     * @throws SQLException
      */
-    public void executeDatabaseStatement(String command) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(command);
-        statement.executeUpdate();
-    }
-
-    /**
-     * check if connected
-     */
-    public boolean isConnected() throws SQLException {
-        if (connection == null) {
-            return false;
-        }
-        return !connection.isClosed();
-    }
-
-    /**
-     * get port
-     */
-    public int getPort() {
-        return port;
-    }
-
-    /**
-     * set port
-     */
-    public void setPort(int port) {
-        this.port = port;
+    public <D extends Dao<T, ?>, T> D createDao(Class<T> clazz) throws SQLException {
+        return DaoManager.createDao(connectionSource, clazz);
     }
 
 }
