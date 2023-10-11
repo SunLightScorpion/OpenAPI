@@ -35,7 +35,7 @@ public class DatabaseConnector {
 
     /**
      * Creates a new instance of the DatabaseConnector
-     * 
+     *
      * @param formular
      * @param databaseType
      */
@@ -45,7 +45,7 @@ public class DatabaseConnector {
 
     /**
      * Creates a new instance of the DatabaseConnector with a custom port
-     * 
+     *
      * @param formular
      * @param databaseType
      * @param port
@@ -57,7 +57,7 @@ public class DatabaseConnector {
 
     /**
      * Creates a new instance of the DatabaseConnector with a custom logger
-     * 
+     *
      * @param formular
      * @param databaseType
      * @param logger
@@ -68,7 +68,7 @@ public class DatabaseConnector {
 
     /**
      * Creates a new instance of the DatabaseConnector with  a custom port and logger
-     * 
+     *
      * @param formular
      * @param databaseType
      * @param port

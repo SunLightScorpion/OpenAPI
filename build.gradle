@@ -35,7 +35,6 @@ java {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    from(zipTree("API/mysql-connector-j-8.1.0.jar"))
     from {
         subprojects.collect { it.sourceSets.main.output }
     }

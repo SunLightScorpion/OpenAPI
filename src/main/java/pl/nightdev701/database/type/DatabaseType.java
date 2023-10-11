@@ -15,6 +15,7 @@ public enum DatabaseType {
 
     /**
      * Gets the default port for a database type
+     *
      * @return defaultPort
      */
     public int getDefaultPort() {
