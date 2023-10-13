@@ -3,16 +3,15 @@ package pl.nightdev701.http;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class HttpRequestHandler {
@@ -51,6 +50,20 @@ public class HttpRequestHandler {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             logger.log(Level.WARNING, "Request failed");
+        }
+    }
+
+    /**
+     * Read line to line per request
+     */
+    public List<String> getHtmlLines(){
+        try {
+            URL uri = new URL(url);
+            InputStream inputStream = uri.openStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            return reader.lines().toList();
+        } catch (IOException e) {
+            return new ArrayList<>();
         }
     }
 
