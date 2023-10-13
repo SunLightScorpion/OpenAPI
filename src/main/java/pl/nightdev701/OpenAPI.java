@@ -19,7 +19,9 @@ import pl.nightdev701.http.HttpRequestHandler;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.stream.OpenPrintStream;
 
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +32,7 @@ public class OpenAPI {
 
     /**
      * encrypt and decrypt strings
+     * @param value
      */
     public static CryptoManager getCryptoManager(String value) {
         return new CryptoManager(value);
@@ -37,6 +40,8 @@ public class OpenAPI {
 
     /**
      * encrypt and decrypt strings with logger implementation
+     * @param logger
+     * @param value
      */
     public static CryptoManager getCryptoManager(String value, AbstractLogger logger) {
         return new CryptoManager(value, logger);
@@ -44,6 +49,8 @@ public class OpenAPI {
 
     /**
      * manage database connections and command easy
+     * @param formular
+     * @param type
      */
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
         return new DatabaseConnector(formular, type);
@@ -51,6 +58,9 @@ public class OpenAPI {
 
     /**
      * manage database connections and command easy with logger implementation
+     * @param logger
+     * @param formular
+     * @param type
      */
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type, AbstractLogger logger) {
         return new DatabaseConnector(formular, type, logger);
@@ -58,6 +68,7 @@ public class OpenAPI {
 
     /**
      * request http and handle it
+     * @param url
      */
     public static HttpRequestHandler getRequestHandler(String url) {
         return new HttpRequestHandler(url);
@@ -65,6 +76,8 @@ public class OpenAPI {
 
     /**
      * request http and handle it with logger implementation
+     * @param logger
+     * @param url
      */
     public static HttpRequestHandler getRequestHandler(String url, AbstractLogger logger) {
         return new HttpRequestHandler(url, logger);
@@ -72,6 +85,7 @@ public class OpenAPI {
 
     /**
      * key to save values
+     * @param value
      */
     public static BaseKey getValueKey(String value) {
         return ValueKey.getKey(value);
@@ -79,9 +93,25 @@ public class OpenAPI {
 
     /**
      * key to save uuid
+     * @param value
      */
     public static BaseKey getValueKey(UUID value) {
         return UniqueValueKey.getKey(value);
+    }
+
+    /**
+     * manipulate System.out
+     */
+    public OpenPrintStream getPrintStream() throws FileNotFoundException {
+        return new OpenPrintStream();
+    }
+
+    /**
+     * manipulate System.out
+     * @param logger
+     */
+    public OpenPrintStream getPrintStream(AbstractLogger logger) throws FileNotFoundException {
+        return new OpenPrintStream(logger);
     }
 
     /**
