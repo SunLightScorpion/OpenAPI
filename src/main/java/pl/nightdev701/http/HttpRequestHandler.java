@@ -49,7 +49,7 @@ public class HttpRequestHandler {
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            logger.log(Level.WARNING, "Request failed");
+            logger.log(Level.WARNING, "Request failed: " + e.getMessage());
         }
     }
 
@@ -63,6 +63,8 @@ public class HttpRequestHandler {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             return reader.lines().toList();
         } catch (IOException e) {
+            e.printStackTrace();
+            logger.log(Level.WARNING, "Request failed: " + e.getMessage());
             return new ArrayList<>();
         }
     }
