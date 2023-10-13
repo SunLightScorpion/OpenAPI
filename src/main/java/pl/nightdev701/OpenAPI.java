@@ -102,7 +102,7 @@ public class OpenAPI {
     /**
      * manipulate System.out
      */
-    public OpenPrintStream getPrintStream() throws FileNotFoundException {
+    public static OpenPrintStream getPrintStream() throws FileNotFoundException {
         return new OpenPrintStream();
     }
 
@@ -110,7 +110,7 @@ public class OpenAPI {
      * manipulate System.out
      * @param logger
      */
-    public OpenPrintStream getPrintStream(AbstractLogger logger) throws FileNotFoundException {
+    public static OpenPrintStream getPrintStream(AbstractLogger logger) throws FileNotFoundException {
         return new OpenPrintStream(logger);
     }
 
