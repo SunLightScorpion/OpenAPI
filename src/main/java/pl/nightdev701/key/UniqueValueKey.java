@@ -40,13 +40,4 @@ public class UniqueValueKey<T extends UUID> implements BaseKey {
         return key;
     }
 
-    @Override
-    public void save(String path) {
-    }
-
-    @Override
-    public Object getData(String path) {
-        return null;
-    }
-
 }

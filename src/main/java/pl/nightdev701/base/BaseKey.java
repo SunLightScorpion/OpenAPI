@@ -17,8 +17,4 @@ public interface BaseKey {
 
     Object baseValue();
 
-    void save(String path);
-
-    Object getData(String path);
-
 }
