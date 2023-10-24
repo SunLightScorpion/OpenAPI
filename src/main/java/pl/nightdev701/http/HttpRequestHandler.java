@@ -21,8 +21,7 @@ public class HttpRequestHandler {
     private String body;
 
     public HttpRequestHandler(String url) {
-        this.logger = new DefaultLogger();
-        this.url = url;
+        this(url, new DefaultLogger());
     }
 
     public HttpRequestHandler(String url, AbstractLogger logger) {
