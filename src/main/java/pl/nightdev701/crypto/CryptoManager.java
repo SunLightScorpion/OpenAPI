@@ -25,8 +25,7 @@ public class CryptoManager {
     private final AbstractLogger logger;
 
     public CryptoManager(String encryptionKey) {
-        this.encryptionKey = encryptionKey;
-        this.logger = new DefaultLogger();
+        this(encryptionKey, new DefaultLogger());
     }
 
     public CryptoManager(String encryptionKey, AbstractLogger logger) {
