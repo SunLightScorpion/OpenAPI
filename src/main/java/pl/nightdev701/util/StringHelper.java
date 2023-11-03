@@ -15,11 +15,11 @@ public class StringHelper {
         this.sub = len;
     }
 
-    public String getBase(){
+    public String getSplitBase(){
         return sortData()[0].toString();
     }
 
-    public String getSubBase(){
+    public String getSplitSubBase(){
         return sortData()[1].toString();
     }
 
