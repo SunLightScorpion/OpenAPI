@@ -1,4 +1,4 @@
-package pl.nightdev701.stream;
+package pl.nightdev701.util.stream;
 
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;

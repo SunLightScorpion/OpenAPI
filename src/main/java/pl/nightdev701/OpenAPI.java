@@ -19,7 +19,7 @@ import pl.nightdev701.http.HttpRequestHandler;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.stream.OpenPrintStream;
+import pl.nightdev701.util.stream.OpenPrintStream;
 
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
