@@ -15,7 +15,7 @@ import pl.nightdev701.crypto.CryptoManager;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
-import pl.nightdev701.http.HttpRequestHandler;
+import pl.nightdev701.network.http.HttpRequestHandler;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;

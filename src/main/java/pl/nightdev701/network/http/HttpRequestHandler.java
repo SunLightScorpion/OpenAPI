@@ -1,4 +1,4 @@
-package pl.nightdev701.http;
+package pl.nightdev701.network.http;
 
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
