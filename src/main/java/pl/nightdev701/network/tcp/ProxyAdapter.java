@@ -1,4 +1,4 @@
-package pl.nightdev701.network.proxy;
+package pl.nightdev701.network.tcp;
 
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
