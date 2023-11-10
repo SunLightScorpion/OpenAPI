@@ -20,10 +20,6 @@ import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.network.tcp.ProxyAdapter;
-import pl.nightdev701.network.tcp.TcpClient;
-import pl.nightdev701.network.tcp.TcpServer;
-import pl.nightdev701.network.udp.UdpClient;
-import pl.nightdev701.network.udp.UdpServer;
 import pl.nightdev701.util.stream.OpenPrintStream;
 
 import java.io.FileNotFoundException;
@@ -91,26 +87,6 @@ public class OpenAPI {
     public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort, AbstractLogger logger){
         return new ProxyAdapter(localPort, remoteHost, remotePort, logger);
     }
-
-
-    /*
-    public static TcpClient getTcpClient(){
-        return new TcpClient();
-    }
-
-    public static TcpServer getTcpServer(){
-        return new TcpServer();
-    }
-
-    public static UdpServer getUdpServer(){
-        return new UdpServer();
-    }
-
-    public static UdpClient getUdpClient(){
-        return new UdpClient();
-    }
-    */
-
 
     /**
      * request http and handle it
