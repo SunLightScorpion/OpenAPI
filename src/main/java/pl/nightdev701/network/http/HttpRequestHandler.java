@@ -75,7 +75,7 @@ public class HttpRequestHandler {
 
         String link = url;
 
-        logger.log(Level.INFO, "Download file to path: " + output);
+        logger.log(Level.INFO, "Download file to path " + output + " from " + url);
 
         URL url;
         try {
