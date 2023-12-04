@@ -133,4 +133,12 @@ public class DatabaseConnector {
         return DaoManager.createDao(connectionSource, clazz);
     }
 
+    /**
+     * get connection
+     * @return connectionSource
+     */
+    public JdbcPooledConnectionSource getConnectionSource() {
+        return connectionSource;
+    }
+
 }
