@@ -24,10 +24,8 @@ import java.util.logging.Level;
 
 public class DatabaseConnector {
 
-    private final String ip;
     private final String user;
     private final String password;
-    private final String database;
     private final DatabaseType databaseType;
     private final AbstractLogger logger;
     private final String connectionURL;
@@ -74,10 +72,10 @@ public class DatabaseConnector {
      * @param logger
      */
     public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, int port, AbstractLogger logger) {
-        this.ip = formular.ip();
+        String ip = formular.ip();
         this.user = formular.user();
         this.password = formular.password();
-        this.database = formular.database();
+        String database = formular.database();
         this.databaseType = databaseType;
 
         this.logger = logger;
