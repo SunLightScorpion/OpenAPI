@@ -54,7 +54,6 @@ public class DatabaseConnector {
         this(formular, databaseType, port, new DefaultLogger());
     }
 
-
     /**
      * Creates a new instance of the DatabaseConnector with a custom logger
      *
@@ -131,7 +130,6 @@ public class DatabaseConnector {
      *
      * @param clazz your DatabaseTable class
      * @return new Dao
-     * @throws SQLException
      */
     public <D extends Dao<T, ?>, T> D createDao(Class<T> clazz) throws SQLException {
         return DaoManager.createDao(connectionSource, clazz);

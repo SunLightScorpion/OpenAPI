@@ -40,7 +40,7 @@ public class DefaultLogger extends AbstractLogger {
             writer.write(result + "\n");
             writer.flush();
 
-            System.out.print(result+"\n");
+            System.out.print(result + "\n");
         } catch (IOException e) {
             System.err.println("Failed to log! " + e.getMessage());
             e.printStackTrace();

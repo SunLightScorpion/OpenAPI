@@ -15,10 +15,10 @@ import pl.nightdev701.crypto.CryptoManager;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
-import pl.nightdev701.network.http.HttpRequestHandler;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.network.http.HttpRequestHandler;
 import pl.nightdev701.network.tcp.ProxyAdapter;
 import pl.nightdev701.util.stream.OpenPrintStream;
 
@@ -33,6 +33,7 @@ public class OpenAPI {
 
     /**
      * encrypt and decrypt strings
+     *
      * @param value
      */
     public static CryptoManager getCryptoManager(String value) {
@@ -41,6 +42,7 @@ public class OpenAPI {
 
     /**
      * encrypt and decrypt strings with logger implementation
+     *
      * @param logger
      * @param value
      */
@@ -50,6 +52,7 @@ public class OpenAPI {
 
     /**
      * manage database connections and command easy
+     *
      * @param formular
      * @param type
      */
@@ -59,6 +62,7 @@ public class OpenAPI {
 
     /**
      * manage database connections and command easy with logger implementation
+     *
      * @param logger
      * @param formular
      * @param type
@@ -69,27 +73,30 @@ public class OpenAPI {
 
     /**
      * proxy server, send data to other target
+     *
      * @param localPort
      * @param remoteHost
      * @param remotePort
      */
-    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort){
+    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort) {
         return new ProxyAdapter(localPort, remoteHost, remotePort);
     }
 
     /**
      * proxy server, send data to other target
+     *
      * @param localPort
      * @param remoteHost
      * @param remotePort
      * @param logger
      */
-    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort, AbstractLogger logger){
+    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort, AbstractLogger logger) {
         return new ProxyAdapter(localPort, remoteHost, remotePort, logger);
     }
 
     /**
      * request http and handle it
+     *
      * @param url
      */
     public static HttpRequestHandler getRequestHandler(String url) {
@@ -98,6 +105,7 @@ public class OpenAPI {
 
     /**
      * request http and handle it with logger implementation
+     *
      * @param logger
      * @param url
      */
@@ -107,6 +115,7 @@ public class OpenAPI {
 
     /**
      * key to save values
+     *
      * @param value
      */
     public static BaseKey getValueKey(String value) {
@@ -115,6 +124,7 @@ public class OpenAPI {
 
     /**
      * key to save uuid
+     *
      * @param value
      */
     public static BaseKey getValueKey(UUID value) {
@@ -130,6 +140,7 @@ public class OpenAPI {
 
     /**
      * manipulate System.out
+     *
      * @param logger
      */
     public static OpenPrintStream getPrintStream(AbstractLogger logger) throws FileNotFoundException {
@@ -138,6 +149,7 @@ public class OpenAPI {
 
     /**
      * print date and clock with data
+     *
      * @param time
      */
     public static String getCurrentClockDate(long time) {
@@ -148,6 +160,7 @@ public class OpenAPI {
 
     /**
      * print only date with data
+     *
      * @param time
      */
     public static String getCurrentDay(long time) {

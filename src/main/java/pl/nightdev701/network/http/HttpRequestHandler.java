@@ -55,7 +55,7 @@ public class HttpRequestHandler {
     /**
      * Read line to line per request
      */
-    public List<String> getHtmlLines(){
+    public List<String> getHtmlLines() {
         try {
             URL uri = new URL(url);
             InputStream inputStream = uri.openStream();

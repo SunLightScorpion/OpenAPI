@@ -17,18 +17,18 @@ public class ProxyAdapter {
     String remoteHost;
     int remotePort;
 
-    public ProxyAdapter(int localPort, String remoteHost, int remotePort){
+    public ProxyAdapter(int localPort, String remoteHost, int remotePort) {
         this(localPort, remoteHost, remotePort, new DefaultLogger());
     }
 
-    public ProxyAdapter(int localPort, String remoteHost, int remotePort, AbstractLogger logger){
+    public ProxyAdapter(int localPort, String remoteHost, int remotePort, AbstractLogger logger) {
         this.localPort = localPort;
         this.remoteHost = remoteHost;
         this.remotePort = remotePort;
         this.logger = logger;
     }
 
-    public void runServer(){
+    public void runServer() {
         try {
             ServerSocket serverSocket = new ServerSocket(localPort);
 

@@ -21,4 +21,5 @@ public enum DatabaseType {
     public int getDefaultPort() {
         return defaultPort;
     }
+
 }

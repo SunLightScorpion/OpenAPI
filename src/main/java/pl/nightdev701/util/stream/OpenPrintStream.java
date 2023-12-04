@@ -10,11 +10,11 @@ import java.util.logging.Level;
 
 public class OpenPrintStream extends PrintStream {
 
+    AbstractLogger logger;
+
     private OpenPrintStream(String fileName) throws FileNotFoundException {
         super(fileName);
     }
-
-    AbstractLogger logger;
 
     public OpenPrintStream() throws FileNotFoundException {
         super("alternative_log.txt");
@@ -72,7 +72,7 @@ public class OpenPrintStream extends PrintStream {
         println(objectToString(x));
     }
 
-    private String objectToString(Object o){
+    private String objectToString(Object o) {
         return o.toString();
     }
 }
