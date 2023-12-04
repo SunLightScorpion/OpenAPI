@@ -137,6 +137,26 @@ public class OpenAPI {
     }
 
     /**
+     * print date and clock with data
+     * @param time
+     */
+    public static String getCurrentClockDate(long time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+
+    /**
+     * print only date with data
+     * @param time
+     */
+    public static String getCurrentDay(long time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+
+    /**
      * print date and clock
      */
     public static String getCurrentClockDate() {
