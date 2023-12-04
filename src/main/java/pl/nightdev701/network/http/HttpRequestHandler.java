@@ -44,7 +44,7 @@ public class HttpRequestHandler {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             this.body = response.body();
 
-            logger.log(Level.INFO, "Request send");
+            logger.log(Level.INFO, "Request sent");
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
