@@ -17,7 +17,6 @@ import com.j256.ormlite.table.TableUtils;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,27 +29,6 @@ public class DatabaseConnector {
     private final AbstractLogger logger;
     private final String connectionURL;
     private JdbcPooledConnectionSource connectionSource;
-
-    /**
-     * Creates a new instance of the DatabaseConnector
-     *
-     * @param formular
-     * @param databaseType
-     */
-    public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType) {
-        this(formular, databaseType, new DefaultLogger());
-    }
-
-    /**
-     * Creates a new instance of the DatabaseConnector with a custom port
-     *
-     * @param formular
-     * @param databaseType
-     * @param port
-     */
-    public DatabaseConnector(DatabaseFormular formular, DatabaseType databaseType, int port) {
-        this(formular, databaseType, port, new DefaultLogger());
-    }
 
     /**
      * Creates a new instance of the DatabaseConnector with a custom logger
@@ -135,6 +113,7 @@ public class DatabaseConnector {
 
     /**
      * get connection
+     *
      * @return connectionSource
      */
     public JdbcPooledConnectionSource getConnectionSource() {

@@ -1,7 +1,6 @@
 package pl.nightdev701.util.stream;
 
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,11 +13,6 @@ public class OpenPrintStream extends PrintStream {
 
     private OpenPrintStream(String fileName) throws FileNotFoundException {
         super(fileName);
-    }
-
-    public OpenPrintStream() throws FileNotFoundException {
-        super("alternative_log.txt");
-        this.logger = new DefaultLogger();
     }
 
     public OpenPrintStream(AbstractLogger logger) throws FileNotFoundException {

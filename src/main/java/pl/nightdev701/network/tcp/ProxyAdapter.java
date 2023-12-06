@@ -1,7 +1,6 @@
 package pl.nightdev701.network.tcp;
 
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +15,6 @@ public class ProxyAdapter {
     int localPort;
     String remoteHost;
     int remotePort;
-
-    public ProxyAdapter(int localPort, String remoteHost, int remotePort) {
-        this(localPort, remoteHost, remotePort, new DefaultLogger());
-    }
 
     public ProxyAdapter(int localPort, String remoteHost, int remotePort, AbstractLogger logger) {
         this.localPort = localPort;

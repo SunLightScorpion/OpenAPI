@@ -11,15 +11,17 @@ https://github.com/NightDev701
 */
 
 import pl.nightdev701.base.BaseKey;
-import pl.nightdev701.crypto.CryptoManager;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.logger.standard.DefaultLogger;
+import pl.nightdev701.manager.CryptManager;
 import pl.nightdev701.network.http.HttpRequestHandler;
 import pl.nightdev701.network.tcp.ProxyAdapter;
+import pl.nightdev701.util.crypto.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
 
 import java.io.FileNotFoundException;
@@ -34,20 +36,43 @@ public class OpenAPI {
     /**
      * encrypt and decrypt strings
      *
-     * @param value
+     * @param key
+     * @param type
      */
-    public static CryptoManager getCryptoManager(String value) {
-        return new CryptoManager(value);
+    public static CryptManager getCryptManager(String key, CryptType type) {
+        return getCryptManager(key, type, new DefaultLogger());
     }
 
     /**
-     * encrypt and decrypt strings with logger implementation
+     * encrypt and decrypt strings
+     *
+     * @param key
+     * @param type
+     * @param logger
+     */
+    public static CryptManager getCryptManager(String key, CryptType type, AbstractLogger logger) {
+        return new CryptManager(key, type, logger);
+    }
+
+    /**
+     * manage database connections and command easy
+     *
+     * @param formular
+     * @param type
+     */
+    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type, int port) {
+        return getDatabaseManager(formular, type, port, new DefaultLogger());
+    }
+
+    /**
+     * manage database connections and command easy with logger implementation
      *
      * @param logger
-     * @param value
+     * @param formular
+     * @param type
      */
-    public static CryptoManager getCryptoManager(String value, AbstractLogger logger) {
-        return new CryptoManager(value, logger);
+    public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type, int port, AbstractLogger logger) {
+        return new DatabaseConnector(formular, type, port, logger);
     }
 
     /**
@@ -57,7 +82,7 @@ public class OpenAPI {
      * @param type
      */
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type) {
-        return new DatabaseConnector(formular, type);
+        return getDatabaseManager(formular, type, new DefaultLogger());
     }
 
     /**
@@ -79,7 +104,7 @@ public class OpenAPI {
      * @param remotePort
      */
     public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort) {
-        return new ProxyAdapter(localPort, remoteHost, remotePort);
+        return getProxy(localPort, remoteHost, remotePort, new DefaultLogger());
     }
 
     /**
@@ -100,7 +125,7 @@ public class OpenAPI {
      * @param url
      */
     public static HttpRequestHandler getRequestHandler(String url) {
-        return new HttpRequestHandler(url);
+        return getRequestHandler(url, new DefaultLogger());
     }
 
     /**
@@ -135,7 +160,7 @@ public class OpenAPI {
      * manipulate System.out
      */
     public static OpenPrintStream getPrintStream() throws FileNotFoundException {
-        return new OpenPrintStream();
+        return getPrintStream(new DefaultLogger());
     }
 
     /**

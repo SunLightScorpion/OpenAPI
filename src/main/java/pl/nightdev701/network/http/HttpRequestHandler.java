@@ -1,7 +1,6 @@
 package pl.nightdev701.network.http;
 
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -19,10 +18,6 @@ public class HttpRequestHandler {
     private final String url;
     private final AbstractLogger logger;
     private String body;
-
-    public HttpRequestHandler(String url) {
-        this(url, new DefaultLogger());
-    }
 
     public HttpRequestHandler(String url, AbstractLogger logger) {
         this.url = url;
