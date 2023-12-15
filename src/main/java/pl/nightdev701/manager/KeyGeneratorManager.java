@@ -11,7 +11,6 @@ public class KeyGeneratorManager {
     private CryptKeyGenerator generator;
 
     public KeyGeneratorManager(CryptType type, AbstractLogger logger) {
-
         if (type == CryptType.AES) {
             this.generator = new AESKeyGenerator(logger);
         }
