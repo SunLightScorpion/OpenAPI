@@ -3,7 +3,7 @@ package pl.nightdev701.manager;
 import pl.nightdev701.crypto.BlowFishCrypto;
 import pl.nightdev701.crypto.CryptoAes;
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.util.crypto.CryptType;
+import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.crypto.CryptoForm;
 
 public class CryptManager {
@@ -12,10 +12,10 @@ public class CryptManager {
 
     public CryptManager(String key, CryptType type, AbstractLogger logger) {
         if (type == CryptType.AES) {
-            this.crypt = new CryptoAes(key);
+            this.crypt = new CryptoAes(key, logger);
         }
         if (type == CryptType.BLOWFISH) {
-            this.crypt = new BlowFishCrypto(key);
+            this.crypt = new BlowFishCrypto(key, logger);
         }
     }
 
@@ -38,4 +38,5 @@ public class CryptManager {
     public CryptoForm getCrypt() {
         return crypt;
     }
+
 }

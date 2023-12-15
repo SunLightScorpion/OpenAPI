@@ -1,7 +1,6 @@
 package pl.nightdev701.crypto;
 
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.util.crypto.CryptoForm;
 
 import javax.crypto.Cipher;
@@ -15,10 +14,6 @@ public class BlowFishCrypto implements CryptoForm {
 
     private final String encryptionKey;
     private final AbstractLogger logger;
-
-    public BlowFishCrypto(String encryptionKey) {
-        this(encryptionKey, new DefaultLogger());
-    }
 
     public BlowFishCrypto(String encryptionKey, AbstractLogger logger) {
         this.encryptionKey = encryptionKey;

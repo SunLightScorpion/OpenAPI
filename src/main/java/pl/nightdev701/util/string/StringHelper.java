@@ -1,4 +1,4 @@
-package pl.nightdev701.util;
+package pl.nightdev701.util.string;
 
 public class StringHelper {
 

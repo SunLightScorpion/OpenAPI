@@ -1,4 +1,4 @@
-package pl.nightdev701.util.crypto;
+package pl.nightdev701.util;
 
 public enum CryptType {
 

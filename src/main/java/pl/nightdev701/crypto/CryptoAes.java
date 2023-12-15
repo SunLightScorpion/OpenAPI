@@ -11,7 +11,6 @@ https://github.com/NightDev701
 */
 
 import pl.nightdev701.logger.AbstractLogger;
-import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.util.crypto.CryptoForm;
 
 import javax.crypto.Cipher;
@@ -24,10 +23,6 @@ public class CryptoAes implements CryptoForm {
 
     private final String encryptionKey;
     private final AbstractLogger logger;
-
-    public CryptoAes(String encryptionKey) {
-        this(encryptionKey, new DefaultLogger());
-    }
 
     public CryptoAes(String encryptionKey, AbstractLogger logger) {
         this.encryptionKey = encryptionKey;

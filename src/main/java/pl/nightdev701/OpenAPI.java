@@ -20,9 +20,10 @@ import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
+import pl.nightdev701.manager.KeyGeneratorManager;
 import pl.nightdev701.network.http.HttpRequestHandler;
 import pl.nightdev701.network.tcp.ProxyAdapter;
-import pl.nightdev701.util.crypto.CryptType;
+import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
 
 import java.io.FileNotFoundException;
@@ -33,6 +34,25 @@ import java.util.Date;
 import java.util.UUID;
 
 public class OpenAPI {
+
+    /**
+     * generate keys
+     *
+     * @param type
+     */
+    public static KeyGeneratorManager getKeyGeneratorManager(CryptType type) {
+        return getKeyGeneratorManager(type, new DefaultLogger());
+    }
+
+    /**
+     * generate keys
+     *
+     * @param type
+     * @param logger
+     */
+    public static KeyGeneratorManager getKeyGeneratorManager(CryptType type, AbstractLogger logger) {
+        return new KeyGeneratorManager(type, logger);
+    }
 
     /**
      * encrypt and decrypt strings
@@ -65,11 +85,11 @@ public class OpenAPI {
         return getDatabaseManager(formular, type, port, new DefaultLogger());
     }
 
-    public static ScorpionFileReader getFileReader(String path, AbstractLogger logger){
+    public static ScorpionFileReader getFileReader(String path, AbstractLogger logger) {
         return new ScorpionFileReader(path, logger);
     }
 
-    public static ScorpionFileReader getFileReader(String path){
+    public static ScorpionFileReader getFileReader(String path) {
         return getFileReader(path, new DefaultLogger());
     }
 
