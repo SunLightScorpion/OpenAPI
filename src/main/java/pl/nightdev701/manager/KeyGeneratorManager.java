@@ -9,6 +9,7 @@ import pl.nightdev701.util.key.CryptKeyGenerator;
 public class KeyGeneratorManager {
 
     private CryptKeyGenerator generator;
+    private boolean print;
 
     public KeyGeneratorManager(CryptType type, AbstractLogger logger) {
         if (type == CryptType.AES) {
@@ -19,8 +20,18 @@ public class KeyGeneratorManager {
         }
     }
 
+    public KeyGeneratorManager setPrint(boolean print){
+        this.print = print;
+        return this;
+    }
+
     public String generateKey() {
-        return generator.generateKey();
+        String key = generator.generateKey();
+
+        if(print){
+            System.out.println("Crypt Key: "+key);
+        }
+        return key;
     }
 
 }
