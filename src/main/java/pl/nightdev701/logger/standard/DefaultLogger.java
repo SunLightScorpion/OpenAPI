@@ -42,9 +42,9 @@ public class DefaultLogger extends AbstractLogger {
 
             System.out.print(result + "\n");
         } catch (IOException e) {
-            System.err.println("Failed to log! " + e.getMessage());
+            System.err.print("Failed to log! " + e.getMessage() + "\n");
             e.printStackTrace();
-            System.out.println("(" + OpenAPI.getCurrentClockDate() + ") Log data: " + level + ", " + msg);
+            System.out.print("(" + OpenAPI.getCurrentClockDate() + ") Log data: " + level + ", " + msg + "\n");
         }
 
     }
