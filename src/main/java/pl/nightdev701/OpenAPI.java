@@ -14,6 +14,7 @@ import pl.nightdev701.base.BaseKey;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
+import pl.nightdev701.io.ConfigReader;
 import pl.nightdev701.io.ScorpionFileReader;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
@@ -85,12 +86,42 @@ public class OpenAPI {
         return getDatabaseManager(formular, type, port, new DefaultLogger());
     }
 
+    /**
+     * Read file
+     *
+     * @param path
+     * @param logger
+     */
     public static ScorpionFileReader getFileReader(String path, AbstractLogger logger) {
         return new ScorpionFileReader(path, logger);
     }
 
+    /**
+     * Read file
+     *
+     * @param path
+     */
     public static ScorpionFileReader getFileReader(String path) {
         return getFileReader(path, new DefaultLogger());
+    }
+
+    /**
+     * Config reader
+     *
+     * @param path
+     * @param logger
+     */
+    public static ConfigReader getConfigReader(String path, AbstractLogger logger) {
+        return new ConfigReader(path, logger);
+    }
+
+    /**
+     * Config reader
+     *
+     * @param path
+     */
+    public static ConfigReader getConfigReader(String path) {
+        return getConfigReader(path, new DefaultLogger());
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.logging.Level;
 
 public class BlowFishGenerator implements CryptKeyGenerator {
 
-    private AbstractLogger logger;
+    private final AbstractLogger logger;
 
     public BlowFishGenerator(AbstractLogger logger) {
         this.logger = logger;

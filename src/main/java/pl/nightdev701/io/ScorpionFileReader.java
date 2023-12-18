@@ -10,9 +10,9 @@ import java.util.logging.Level;
 
 public class ScorpionFileReader {
 
+    private final AbstractLogger logger;
     private BufferedReader bufferedReader;
     private String currentLine;
-    private AbstractLogger logger;
 
     public ScorpionFileReader(String filePath, AbstractLogger logger) {
 
@@ -21,7 +21,7 @@ public class ScorpionFileReader {
         try {
             FileReader fileReader = new FileReader(filePath);
             bufferedReader = new BufferedReader(fileReader);
-            currentLine = bufferedReader.readLine(); // Lese die erste Zeile
+            currentLine = bufferedReader.readLine();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "Die Datei wurde nicht gefunden: " + e.getMessage());
         } catch (IOException e) {
@@ -35,7 +35,7 @@ public class ScorpionFileReader {
 
     public void readNextLine() {
         try {
-            currentLine = bufferedReader.readLine(); // Gehe zur nächsten Zeile
+            currentLine = bufferedReader.readLine();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Fehler beim Lesen der nächsten Zeile: " + e.getMessage());
         }

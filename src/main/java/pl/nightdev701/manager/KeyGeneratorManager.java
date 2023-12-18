@@ -20,7 +20,7 @@ public class KeyGeneratorManager {
         }
     }
 
-    public KeyGeneratorManager setPrint(boolean print){
+    public KeyGeneratorManager setPrint(boolean print) {
         this.print = print;
         return this;
     }
@@ -28,8 +28,8 @@ public class KeyGeneratorManager {
     public String generateKey() {
         String key = generator.generateKey();
 
-        if(print){
-            System.out.println("Crypt Key: "+key);
+        if (print) {
+            System.out.println("Crypt Key: " + key);
         }
         return key;
     }
