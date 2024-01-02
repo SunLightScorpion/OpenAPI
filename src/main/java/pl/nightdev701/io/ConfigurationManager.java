@@ -67,7 +67,7 @@ public class ConfigurationManager {
             BufferedReader reader = new BufferedReader(fileReader);
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains(base+"=")) {
+                if (line.contains(base + "=")) {
                     reader.close();
                     return true;
                 }
@@ -83,7 +83,7 @@ public class ConfigurationManager {
 
     public void add(String base, String value) {
 
-        if(isSet(base)){
+        if (isSet(base)) {
             logger.log(Level.WARNING, "Line already exist: " + base);
             return;
         }
