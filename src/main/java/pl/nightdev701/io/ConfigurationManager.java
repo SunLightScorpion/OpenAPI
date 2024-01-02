@@ -61,6 +61,10 @@ public class ConfigurationManager {
         return dataMap.containsKey(key);
     }
 
+    public boolean existFile(){
+        return new File(path).exists();
+    }
+
     public boolean isSet(String base) {
         try {
             FileReader fileReader = new FileReader(path);
