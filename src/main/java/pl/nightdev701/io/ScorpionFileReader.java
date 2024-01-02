@@ -23,9 +23,9 @@ public class ScorpionFileReader {
             bufferedReader = new BufferedReader(fileReader);
             currentLine = bufferedReader.readLine();
         } catch (FileNotFoundException e) {
-            logger.log(Level.WARNING, "Die Datei wurde nicht gefunden: " + e.getMessage());
+            logger.log(Level.WARNING, "The file was not found: " + e.getMessage());
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Fehler beim Lesen der Datei: " + e.getMessage());
+            logger.log(Level.WARNING, "Error while reading the file: " + e.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class ScorpionFileReader {
         try {
             currentLine = bufferedReader.readLine();
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Fehler beim Lesen der nächsten Zeile: " + e.getMessage());
+            logger.log(Level.WARNING, "Error while reading the next line: " + e.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class ScorpionFileReader {
                 bufferedReader.close();
             }
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Fehler beim Schließen des Readers: " + e.getMessage());
+            logger.log(Level.WARNING, "Error while closing the reader: " + e.getMessage());
         }
     }
 

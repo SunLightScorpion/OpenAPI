@@ -14,7 +14,7 @@ import pl.nightdev701.base.BaseKey;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.type.DatabaseType;
-import pl.nightdev701.io.ConfigReader;
+import pl.nightdev701.io.ConfigurationManager;
 import pl.nightdev701.io.ScorpionFileReader;
 import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
@@ -111,8 +111,8 @@ public class OpenAPI {
      * @param path
      * @param logger
      */
-    public static ConfigReader getConfigReader(String path, AbstractLogger logger) {
-        return new ConfigReader(path, logger);
+    public static ConfigurationManager getConfigurationManager(String path, AbstractLogger logger) {
+        return new ConfigurationManager(path, logger);
     }
 
     /**
@@ -120,8 +120,8 @@ public class OpenAPI {
      *
      * @param path
      */
-    public static ConfigReader getConfigReader(String path) {
-        return getConfigReader(path, new DefaultLogger());
+    public static ConfigurationManager getConfigurationManager(String path) {
+        return getConfigurationManager(path, new DefaultLogger());
     }
 
     /**
