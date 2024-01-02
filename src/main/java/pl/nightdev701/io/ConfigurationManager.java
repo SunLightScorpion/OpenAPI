@@ -53,7 +53,7 @@ public class ConfigurationManager {
         }
     }
 
-    public String getData(String key) {
+    public String getValue(String key) {
         return dataMap.get(key);
     }
 
