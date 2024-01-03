@@ -1,12 +1,16 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 compileJava {
     options.encoding = 'UTF-8'
 }
 
+String commit = 'git rev-parse --verify --short HEAD'.execute().text.trim()
+
 group 'pl.nightdev701'
+version commit
 
 repositories {
     maven {
@@ -36,6 +40,23 @@ dependencies {
 
     // https://mvnrepository.com/artifact/redis.clients/jedis
     implementation 'redis.clients:jedis:5.1.0'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = "URL_DEINES_REPOSITORIES"
+            credentials {
+                username = "DEIN_USERNAME"
+                password = "DEIN_PASSWORT"
+            }
+        }
+    }
 }
 
 java {
