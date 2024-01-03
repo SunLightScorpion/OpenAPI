@@ -34,6 +34,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc
     implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
 
+    // https://mvnrepository.com/artifact/redis.clients/jedis
     implementation 'redis.clients:jedis:3.7.0'
 }
 
