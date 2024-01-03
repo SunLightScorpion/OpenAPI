@@ -10,12 +10,12 @@ public class JedisAdapter {
     Jedis jedis;
     AbstractLogger logger;
 
-    public JedisAdapter(String host, int port, AbstractLogger logger){
+    public JedisAdapter(String host, int port, AbstractLogger logger) {
         this.jedis = new Jedis(host, port);
         this.logger = logger;
 
-        if(jedis.isConnected()){
-            logger.log(Level.INFO, "Redis Database is connected to "+host+":"+port);
+        if (jedis.isConnected()) {
+            logger.log(Level.INFO, "Redis Database is connected to " + host + ":" + port);
         }
     }
 

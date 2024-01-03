@@ -61,7 +61,7 @@ public class ConfigurationManager {
         return dataMap.containsKey(key);
     }
 
-    public boolean existFile(){
+    public boolean existFile() {
         return new File(path).exists();
     }
 

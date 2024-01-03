@@ -128,18 +128,20 @@ public class OpenAPI {
 
     /**
      * Redis connectir
+     *
      * @param formular
      * @param logger
      */
-    public static JedisAdapter getRedisConnector(RedisFormular formular, AbstractLogger logger){
+    public static JedisAdapter getRedisConnector(RedisFormular formular, AbstractLogger logger) {
         return new JedisAdapter(formular.host(), formular.port(), logger);
     }
 
     /**
      * Redis connector
+     *
      * @param formular
      */
-    public static JedisAdapter getRedisConnector(RedisFormular formular){
+    public static JedisAdapter getRedisConnector(RedisFormular formular) {
         return getRedisConnector(formular, new DefaultLogger());
     }
 
