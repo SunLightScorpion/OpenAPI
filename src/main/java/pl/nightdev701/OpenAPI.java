@@ -13,6 +13,8 @@ https://github.com/NightDev701
 import pl.nightdev701.base.BaseKey;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
+import pl.nightdev701.database.formular.RedisFormular;
+import pl.nightdev701.database.redis.JedisAdapter;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.io.ConfigurationManager;
 import pl.nightdev701.io.ScorpionFileReader;
@@ -122,6 +124,23 @@ public class OpenAPI {
      */
     public static ConfigurationManager getConfigurationManager(String path) {
         return getConfigurationManager(path, new DefaultLogger());
+    }
+
+    /**
+     * Redis connectir
+     * @param formular
+     * @param logger
+     */
+    public static JedisAdapter getRedisConnector(RedisFormular formular, AbstractLogger logger){
+        return new JedisAdapter(formular.host(), formular.port(), logger);
+    }
+
+    /**
+     * Redis connector
+     * @param formular
+     */
+    public static JedisAdapter getRedisConnector(RedisFormular formular){
+        return getRedisConnector(formular, new DefaultLogger());
     }
 
     /**
