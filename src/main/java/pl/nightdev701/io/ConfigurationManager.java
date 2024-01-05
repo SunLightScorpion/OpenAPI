@@ -106,6 +106,46 @@ public class ConfigurationManager {
         readConfig(path);
     }
 
+    public void remove(String key) {
+        if (!containsKey(key)) {
+            logger.log(Level.WARNING, "Key does not exist: " + key);
+            return;
+        }
+
+        try {
+            File inputFile = new File(path);
+            File tempFile = new File("tempFile.txt");
+
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String lineToRemove = key + "=";
+
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.startsWith(lineToRemove)) {
+                    continue;
+                }
+                writer.write(currentLine);
+                writer.newLine();
+            }
+            writer.close();
+            reader.close();
+
+            if (inputFile.delete()) {
+                if (!tempFile.renameTo(inputFile)) {
+                    logger.log(Level.WARNING, "Error while renaming temp file to original file");
+                }
+            } else {
+                logger.log(Level.WARNING, "Error while deleting original file");
+            }
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Error while updating the file: " + e.getMessage());
+        }
+
+        readConfig(path);
+    }
+
     public void set(String base, String value) {
         if (isSet(base)) {
             try {
