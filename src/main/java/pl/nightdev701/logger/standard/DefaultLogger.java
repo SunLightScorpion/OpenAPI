@@ -20,6 +20,9 @@ import java.util.logging.Logger;
 
 public class DefaultLogger extends AbstractLogger {
 
+    /**
+     * default logger, from openapi
+     */
     @Override
     public void log(Object level, String msg) {
 

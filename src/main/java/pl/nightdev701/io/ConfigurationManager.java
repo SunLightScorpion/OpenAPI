@@ -31,6 +31,9 @@ public class ConfigurationManager {
         readConfig(path);
     }
 
+    /**
+     * read config file
+     */
     private void readConfig(String filePath) {
 
         logger.log(Level.CONFIG, "Read config...");
@@ -53,18 +56,30 @@ public class ConfigurationManager {
         }
     }
 
+    /**
+     * return value
+     */
     public String getValue(String key) {
         return dataMap.get(key);
     }
 
+    /**
+     * check if, key is contained
+     */
     public boolean containsKey(String key) {
         return dataMap.containsKey(key);
     }
 
+    /**
+     * Check if file exist
+     */
     public boolean existFile() {
         return new File(path).exists();
     }
 
+    /**
+     * check if line exist
+     */
     public boolean isSet(String base) {
         try {
             FileReader fileReader = new FileReader(path);
@@ -85,27 +100,9 @@ public class ConfigurationManager {
         return false;
     }
 
-    public void add(String base, String value) {
-
-        if (isSet(base)) {
-            logger.log(Level.WARNING, "Line already exist: " + base);
-            return;
-        }
-
-        try {
-            FileWriter fileWriter = new FileWriter(path, true);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write(base + "=" + value);
-            writer.newLine();
-            writer.close();
-
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Error while writing to the file: " + e.getMessage());
-        }
-
-        readConfig(path);
-    }
-
+    /**
+     * remove line
+     */
     public void remove(String key) {
         if (!containsKey(key)) {
             logger.log(Level.WARNING, "Key does not exist: " + key);
@@ -146,6 +143,33 @@ public class ConfigurationManager {
         readConfig(path);
     }
 
+    /**
+     * add line
+     */
+    public void add(String base, String value) {
+
+        if (isSet(base)) {
+            logger.log(Level.WARNING, "Line already exist: " + base);
+            return;
+        }
+
+        try {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            writer.write(base + "=" + value);
+            writer.newLine();
+            writer.close();
+
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Error while writing to the file: " + e.getMessage());
+        }
+
+        readConfig(path);
+    }
+
+    /**
+     * set value
+     */
     public void set(String base, String value) {
         if (isSet(base)) {
             try {

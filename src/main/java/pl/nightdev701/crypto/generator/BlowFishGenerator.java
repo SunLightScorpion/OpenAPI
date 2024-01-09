@@ -16,6 +16,9 @@ public class BlowFishGenerator implements CryptKeyGenerator {
         this.logger = logger;
     }
 
+    /**
+     * Generate Key
+     */
     @Override
     public String generateKey() {
         try {

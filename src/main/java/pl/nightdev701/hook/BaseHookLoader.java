@@ -12,10 +12,19 @@ https://github.com/NightDev701
 
 public interface BaseHookLoader {
 
+    /**
+     * init api
+     */
     void hookAPI();
 
+    /**
+     * init settings
+     */
     void initSettings();
 
+    /**
+     * get module name
+     */
     String getModule();
 
 }

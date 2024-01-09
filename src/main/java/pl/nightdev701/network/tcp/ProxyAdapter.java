@@ -23,6 +23,9 @@ public class ProxyAdapter {
         this.logger = logger;
     }
 
+    /**
+     * run socket proxy
+     */
     public void runServer() {
         try {
             ServerSocket serverSocket = new ServerSocket(localPort);
@@ -39,6 +42,9 @@ public class ProxyAdapter {
         }
     }
 
+    /**
+     * handle client
+     */
     private void handleClient(Socket clientSocket, String remoteHost, int remotePort) {
         try {
             Socket remoteSocket = new Socket(remoteHost, remotePort);

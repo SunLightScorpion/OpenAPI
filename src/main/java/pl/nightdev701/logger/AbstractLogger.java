@@ -12,6 +12,9 @@ https://github.com/NightDev701
 
 public abstract class AbstractLogger {
 
+    /**
+     * support custom logger
+     */
     public abstract void log(Object level, String msg);
 
 }

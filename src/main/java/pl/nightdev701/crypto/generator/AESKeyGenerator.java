@@ -16,6 +16,9 @@ public class AESKeyGenerator implements CryptKeyGenerator {
         this.logger = logger;
     }
 
+    /**
+     * Generate Key
+     */
     @Override
     public String generateKey() {
         try {

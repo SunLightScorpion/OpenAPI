@@ -19,6 +19,9 @@ public class JedisAdapter {
         }
     }
 
+    /**
+     * Interact with redis
+     */
     public Jedis getJedis() {
         return jedis;
     }

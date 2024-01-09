@@ -29,10 +29,16 @@ public class ScorpionFileReader {
         }
     }
 
+    /**
+     * get current line
+     */
     public String getCurrentLine() {
         return currentLine;
     }
 
+    /**
+     * read next line
+     */
     public void readNextLine() {
         try {
             currentLine = bufferedReader.readLine();
@@ -41,6 +47,9 @@ public class ScorpionFileReader {
         }
     }
 
+    /**
+     * close io stream
+     */
     public void close() {
         try {
             if (bufferedReader != null) {

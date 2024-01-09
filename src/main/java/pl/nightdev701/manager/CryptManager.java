@@ -19,6 +19,9 @@ public class CryptManager {
         }
     }
 
+    /**
+     * encrypt value
+     */
     public String encrypt(String text) {
         try {
             return getCrypt().encrypt(text);
@@ -27,6 +30,9 @@ public class CryptManager {
         }
     }
 
+    /**
+     * decrypt value
+     */
     public String decrypt(String text) {
         try {
             return getCrypt().decrypt(text);
@@ -35,6 +41,9 @@ public class CryptManager {
         }
     }
 
+    /**
+     * get crypt algorithm
+     */
     public CryptoForm getCrypt() {
         return crypt;
     }

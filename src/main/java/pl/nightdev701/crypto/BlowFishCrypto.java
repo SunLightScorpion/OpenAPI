@@ -20,6 +20,9 @@ public class BlowFishCrypto implements CryptoForm {
         this.logger = logger;
     }
 
+    /**
+     * encrypt data
+     */
     @Override
     public String encrypt(String plainText) throws Exception {
         Cipher cipher = Cipher.getInstance("Blowfish");
@@ -31,6 +34,9 @@ public class BlowFishCrypto implements CryptoForm {
         return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8)));
     }
 
+    /**
+     * decrypt data
+     */
     @Override
     public String decrypt(String encryptedText) throws Exception {
         Cipher cipher = Cipher.getInstance("Blowfish");

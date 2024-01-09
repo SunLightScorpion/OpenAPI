@@ -15,6 +15,9 @@ https://github.com/NightDev701
  */
 public interface BaseKey {
 
+    /**
+     * return key value
+     */
     Object baseValue();
 
 }

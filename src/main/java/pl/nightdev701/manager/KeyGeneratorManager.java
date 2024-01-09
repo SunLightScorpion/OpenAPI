@@ -20,11 +20,17 @@ public class KeyGeneratorManager {
         }
     }
 
+    /**
+     * toggle print
+     */
     public KeyGeneratorManager setPrint(boolean print) {
         this.print = print;
         return this;
     }
 
+    /**
+     * get generated key
+     */
     public String generateKey() {
         String key = generator.generateKey();
 
