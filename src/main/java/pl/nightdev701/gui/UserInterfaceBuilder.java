@@ -15,40 +15,40 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
-public class SimpleGUI extends JFrame {
+public class UserInterfaceBuilder extends JFrame {
 
     String name;
     int width;
     int height;
 
-    public SimpleGUI(String name, int width, int height) {
+    public UserInterfaceBuilder(String name, int width, int height) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setName(name);
         setTitle(name);
         setSize(width, height);
     }
 
-    public SimpleGUI resizeable(boolean value) {
+    public UserInterfaceBuilder resizeable(boolean value) {
         setResizable(value);
         return this;
     }
 
-    public SimpleGUI registerMouse(MouseListener mouse) {
+    public UserInterfaceBuilder registerMouse(MouseListener mouse) {
         addMouseListener(mouse);
         return this;
     }
 
-    public SimpleGUI registerKeyboard(KeyListener key) {
+    public UserInterfaceBuilder registerKeyboard(KeyListener key) {
         addKeyListener(key);
         return this;
     }
 
-    public SimpleGUI addComponent(Component c) {
+    public UserInterfaceBuilder addComponent(Component c) {
         add(c);
         return this;
     }
 
-    public SimpleGUI defaultClose(int code) {
+    public UserInterfaceBuilder defaultClose(int code) {
         setDefaultCloseOperation(code);
         return this;
     }
