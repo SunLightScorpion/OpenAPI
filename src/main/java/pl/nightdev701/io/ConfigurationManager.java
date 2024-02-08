@@ -25,7 +25,7 @@ public class ConfigurationManager {
 
     public ConfigurationManager(String path, AbstractLogger logger) {
         this.logger = logger;
-        if(path.endsWith(".slsd")){
+        if (path.endsWith(".slsd")) {
             this.path = path;
         } else {
             this.path = path + ".slsd";
