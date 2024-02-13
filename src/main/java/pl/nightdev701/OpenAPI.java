@@ -23,10 +23,11 @@ import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
+import pl.nightdev701.manager.FileCryptManager;
 import pl.nightdev701.manager.KeyGeneratorManager;
 import pl.nightdev701.network.http.HttpRequestHandler;
-import pl.nightdev701.security.honeypot.SSHHoneypot;
 import pl.nightdev701.network.tcp.ProxyAdapter;
+import pl.nightdev701.security.honeypot.SSHHoneypot;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
 
@@ -77,6 +78,25 @@ public class OpenAPI {
      */
     public static CryptManager getCryptManager(String key, CryptType type, AbstractLogger logger) {
         return new CryptManager(key, type, logger);
+    }
+
+    /**
+     * @param key
+     * @param type
+     * @param logger
+     * @return
+     */
+    public static FileCryptManager getFileCryptManager(String key, CryptType type, AbstractLogger logger) {
+        return new FileCryptManager(key, type, logger);
+    }
+
+    /**
+     * @param key
+     * @param type
+     * @return
+     */
+    public static FileCryptManager getFileCryptManager(String key, CryptType type) {
+        return new FileCryptManager(key, type, new DefaultLogger());
     }
 
     /**
