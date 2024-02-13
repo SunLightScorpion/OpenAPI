@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'maven-publish'
 }
 
 compileJava {
@@ -40,23 +39,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/redis.clients/jedis
     implementation 'redis.clients:jedis:5.1.0'
-}
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url = "URL_DEINES_REPOSITORIES"
-            credentials {
-                username = "DEIN_USERNAME"
-                password = "DEIN_PASSWORT"
-            }
-        }
-    }
+    //https://mvnrepository.com/artifact/org.apache.sshd/sshd-core
+    implementation 'org.apache.sshd:sshd-core:2.7.0'
 }
 
 java {
@@ -70,8 +55,4 @@ jar {
     from {
         subprojects.collect { it.sourceSets.main.output }
     }
-}
-
-test {
-    useJUnitPlatform()
 }

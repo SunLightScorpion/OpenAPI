@@ -1,8 +1,8 @@
 package pl.nightdev701.manager;
 
-import pl.nightdev701.crypto.BlowFishCrypto;
-import pl.nightdev701.crypto.CryptoAes;
 import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.security.BlowFishCrypto;
+import pl.nightdev701.security.CryptoAes;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.crypto.CryptoForm;
 

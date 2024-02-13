@@ -1,4 +1,4 @@
-package pl.nightdev701.crypto.generator;
+package pl.nightdev701.security.generator;
 
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.util.key.CryptKeyGenerator;

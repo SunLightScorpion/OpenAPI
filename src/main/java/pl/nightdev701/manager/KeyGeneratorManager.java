@@ -1,8 +1,8 @@
 package pl.nightdev701.manager;
 
-import pl.nightdev701.crypto.generator.AESKeyGenerator;
-import pl.nightdev701.crypto.generator.BlowFishGenerator;
 import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.security.generator.AESKeyGenerator;
+import pl.nightdev701.security.generator.BlowFishGenerator;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.key.CryptKeyGenerator;
 

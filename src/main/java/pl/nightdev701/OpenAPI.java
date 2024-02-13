@@ -25,6 +25,7 @@ import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
 import pl.nightdev701.manager.KeyGeneratorManager;
 import pl.nightdev701.network.http.HttpRequestHandler;
+import pl.nightdev701.network.ssh.SSHHoneypot;
 import pl.nightdev701.network.tcp.ProxyAdapter;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
@@ -76,6 +77,27 @@ public class OpenAPI {
      */
     public static CryptManager getCryptManager(String key, CryptType type, AbstractLogger logger) {
         return new CryptManager(key, type, logger);
+    }
+
+    /**
+     * ssh honeypot
+     *
+     * @param port
+     * @param logger
+     * @return
+     */
+    public static SSHHoneypot getSshHoneyPot(int port, AbstractLogger logger) {
+        return new SSHHoneypot(port, logger);
+    }
+
+    /**
+     * ssh honeypot
+     *
+     * @param port
+     * @return
+     */
+    public static SSHHoneypot getSshHoneyPot(int port) {
+        return getSshHoneyPot(port, new DefaultLogger());
     }
 
     /**

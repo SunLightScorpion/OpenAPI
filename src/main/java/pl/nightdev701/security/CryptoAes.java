@@ -1,4 +1,4 @@
-package pl.nightdev701.crypto;
+package pl.nightdev701.security;
 
 /*
 

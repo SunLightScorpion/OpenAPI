@@ -1,4 +1,4 @@
-package pl.nightdev701.crypto;
+package pl.nightdev701.security;
 
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.util.crypto.CryptoForm;
