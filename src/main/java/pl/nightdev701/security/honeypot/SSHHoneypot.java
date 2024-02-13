@@ -1,4 +1,4 @@
-package pl.nightdev701.network.ssh;
+package pl.nightdev701.security.honeypot;
 
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;

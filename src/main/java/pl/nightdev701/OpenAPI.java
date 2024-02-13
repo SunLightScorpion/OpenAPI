@@ -25,7 +25,7 @@ import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
 import pl.nightdev701.manager.KeyGeneratorManager;
 import pl.nightdev701.network.http.HttpRequestHandler;
-import pl.nightdev701.network.ssh.SSHHoneypot;
+import pl.nightdev701.security.honeypot.SSHHoneypot;
 import pl.nightdev701.network.tcp.ProxyAdapter;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
