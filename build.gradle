@@ -51,6 +51,7 @@ java {
 }
 
 jar {
+    print("Build project, git-hash: " + commit)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from {
         subprojects.collect { it.sourceSets.main.output }
