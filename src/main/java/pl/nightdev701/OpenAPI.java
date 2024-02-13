@@ -81,6 +81,8 @@ public class OpenAPI {
     }
 
     /**
+     * encrypt and decrypt files
+     *
      * @param key
      * @param type
      * @param logger
@@ -91,6 +93,8 @@ public class OpenAPI {
     }
 
     /**
+     * encrypt and decrypt files
+     *
      * @param key
      * @param type
      * @return
