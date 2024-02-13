@@ -39,7 +39,6 @@ public class AesFileSecurity implements FileCryptoForm {
                 cipherOutputStream.write(buffer, 0, bytesRead);
             }
         }
-
         logger.log(Level.INFO, "File encrypted");
     }
 
@@ -58,7 +57,7 @@ public class AesFileSecurity implements FileCryptoForm {
                 outputStream.write(buffer, 0, bytesRead);
             }
         }
-
         logger.log(Level.INFO, "File decrypted");
     }
+
 }
