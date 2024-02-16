@@ -7,10 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
@@ -39,7 +36,11 @@ public class AesFileSecurity implements FileCryptoForm {
                 cipherOutputStream.write(buffer, 0, bytesRead);
             }
         }
-        logger.log(Level.INFO, "File encrypted");
+        var del = new File(inputFile).delete();
+
+        if(del){
+            logger.log(Level.INFO, "File encrypted");
+        }
     }
 
     @Override
@@ -57,7 +58,11 @@ public class AesFileSecurity implements FileCryptoForm {
                 outputStream.write(buffer, 0, bytesRead);
             }
         }
-        logger.log(Level.INFO, "File decrypted");
+        var del = new File(inputFile).delete();
+
+        if(del){
+            logger.log(Level.INFO, "File decrypted");
+        }
     }
 
 }
