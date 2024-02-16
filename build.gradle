@@ -41,7 +41,7 @@ dependencies {
     implementation 'redis.clients:jedis:5.1.0'
 
     //https://mvnrepository.com/artifact/org.apache.sshd/sshd-core
-    implementation 'org.apache.sshd:sshd-core:2.7.0'
+    implementation 'org.apache.sshd:sshd-core:2.9.3'
 }
 
 java {
@@ -51,7 +51,7 @@ java {
 }
 
 jar {
-    print("Build project, git-hash: " + commit)
+    println("Build project, git-hash: " + commit)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from {
         subprojects.collect { it.sourceSets.main.output }
