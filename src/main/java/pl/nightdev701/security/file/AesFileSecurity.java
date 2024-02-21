@@ -65,4 +65,14 @@ public class AesFileSecurity implements FileCryptoForm {
         }
     }
 
+    @Override
+    public void encrypt(File inputFile, String outputFile) throws Exception {
+        encrypt(inputFile.getAbsolutePath(), outputFile);
+    }
+
+    @Override
+    public void decrypt(File inputFile, String outputFile) throws Exception {
+        decrypt(inputFile.getAbsolutePath(), outputFile);
+    }
+
 }
