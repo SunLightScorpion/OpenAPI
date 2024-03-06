@@ -30,8 +30,8 @@ public class ConfigurationManager {
         } else {
             this.path = path + ".slsd";
         }
-        this.dataMap = new LinkedHashMap<>();
 
+        this.dataMap = new LinkedHashMap<>();
         readConfig(path);
     }
 
@@ -60,7 +60,13 @@ public class ConfigurationManager {
 
             logger.log(Level.INFO, "Config read!");
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
+            File check = new File(filePath);
+
+            if(check.exists()){
+                logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
+            } else {
+                logger.log(Level.INFO, "File was not found, don't worry, the file will be created!");
+            }
         }
     }
 
