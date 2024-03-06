@@ -40,6 +40,10 @@ public class ConfigurationManager {
      */
     private void readConfig(String filePath) {
 
+        if (!filePath.endsWith(".slsd")) {
+            filePath = filePath + ".slsd";
+        }
+
         logger.log(Level.CONFIG, "Read config...");
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
