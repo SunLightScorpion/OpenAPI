@@ -38,7 +38,7 @@ public class AesFileSecurity implements FileCryptoForm {
         }
         var del = new File(inputFile).delete();
 
-        if(del){
+        if (del) {
             logger.log(Level.INFO, "File encrypted");
         }
     }
@@ -60,7 +60,7 @@ public class AesFileSecurity implements FileCryptoForm {
         }
         var del = new File(inputFile).delete();
 
-        if(del){
+        if (del) {
             logger.log(Level.INFO, "File decrypted");
         }
     }

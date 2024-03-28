@@ -62,7 +62,7 @@ public class ConfigurationManager {
         } catch (IOException e) {
             File check = new File(filePath);
 
-            if(check.exists()){
+            if (check.exists()) {
                 logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
             } else {
                 logger.log(Level.INFO, "File was not found, don't worry, the file will be created!");
