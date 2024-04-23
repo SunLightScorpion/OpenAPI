@@ -10,17 +10,30 @@ https://github.com/NightDev701
 
 */
 
-import pl.nightdev701.base.BaseKey;
+import pl.nightdev701.io.ConfigurationManager;
+import pl.nightdev701.logger.AbstractLogger;
+import pl.nightdev701.logger.standard.DefaultLogger;
+
+import java.io.File;
+import java.util.logging.Level;
 
 /**
  * string key
  */
-public class ValueKey<T extends String> implements BaseKey {
+public class ValueKey<T extends String> {
 
     T key;
+    AbstractLogger logger;
 
-    private ValueKey(T key) {
+    private ValueKey(T key, AbstractLogger logger) {
         this.key = key;
+        this.logger = logger;
+
+        boolean created = new File("key_values").mkdir();
+
+        if(!created){
+            this.logger.log(Level.WARNING, "Value folder cannot created!");
+        }
     }
 
     /**
@@ -29,7 +42,25 @@ public class ValueKey<T extends String> implements BaseKey {
      * @return key value
      */
     public static ValueKey<String> getKey(Object key) {
-        return new ValueKey<>(key.toString());
+        return new ValueKey<>(key.toString(), new DefaultLogger());
+    }
+
+    /**
+     * create key (custom logger)
+     *
+     * @return key value
+     */
+    public static ValueKey<String> getKey(Object key, AbstractLogger logger) {
+        return new ValueKey<>(key.toString(), logger);
+    }
+
+    /**
+     * write value
+     *
+     */
+    public void setKeyValue(String target){
+        ConfigurationManager data = new ConfigurationManager("key_values", logger);
+        data.set(key, target);
     }
 
     /**
@@ -37,9 +68,9 @@ public class ValueKey<T extends String> implements BaseKey {
      *
      * @return key value
      */
-    @Override
-    public Object baseValue() {
-        return key;
+    public Object getKeyValue() {
+        ConfigurationManager data = new ConfigurationManager("key_values", logger);
+        return data.getValue(key);
     }
 
 }

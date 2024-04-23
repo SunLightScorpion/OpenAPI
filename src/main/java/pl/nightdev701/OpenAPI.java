@@ -10,7 +10,6 @@ https://github.com/NightDev701
 
 */
 
-import pl.nightdev701.base.BaseKey;
 import pl.nightdev701.database.DatabaseConnector;
 import pl.nightdev701.database.formular.DatabaseFormular;
 import pl.nightdev701.database.formular.RedisFormular;
@@ -18,7 +17,6 @@ import pl.nightdev701.database.redis.JedisAdapter;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.io.ConfigurationManager;
 import pl.nightdev701.io.ScorpionFileReader;
-import pl.nightdev701.key.UniqueValueKey;
 import pl.nightdev701.key.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
@@ -36,7 +34,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 public class OpenAPI {
 
@@ -266,21 +263,21 @@ public class OpenAPI {
     }
 
     /**
+     * key to save values (custom logger)
+     *
+     * @param value
+     */
+    public static ValueKey<String> getValueKey(String value, AbstractLogger logger) {
+        return ValueKey.getKey(value, logger);
+    }
+
+    /**
      * key to save values
      *
      * @param value
      */
-    public static BaseKey getValueKey(String value) {
-        return ValueKey.getKey(value);
-    }
-
-    /**
-     * key to save uuid
-     *
-     * @param value
-     */
-    public static BaseKey getValueKey(UUID value) {
-        return UniqueValueKey.getKey(value);
+    public static ValueKey<String> getValueKey(String value) {
+        return getValueKey(value, new DefaultLogger());
     }
 
     /**
