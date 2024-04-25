@@ -1,4 +1,4 @@
-package pl.nightdev701.key;
+package pl.nightdev701.io;
 
 /*
 
@@ -10,7 +10,6 @@ https://github.com/NightDev701
 
 */
 
-import pl.nightdev701.io.ConfigurationManager;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 

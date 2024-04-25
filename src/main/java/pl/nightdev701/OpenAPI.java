@@ -17,7 +17,7 @@ import pl.nightdev701.database.redis.JedisAdapter;
 import pl.nightdev701.database.type.DatabaseType;
 import pl.nightdev701.io.ConfigurationManager;
 import pl.nightdev701.io.ScorpionFileReader;
-import pl.nightdev701.key.ValueKey;
+import pl.nightdev701.io.ValueKey;
 import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
