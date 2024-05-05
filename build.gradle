@@ -9,7 +9,7 @@ compileJava {
 String commit = 'git rev-parse --verify --short HEAD'.execute().text.trim()
 
 group 'pl.nightdev701'
-version commit
+version "SNAPSHOT-2.0-"+commit
 
 repositories {
     maven {

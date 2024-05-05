@@ -29,10 +29,6 @@ public class ValueKey<T extends String> {
         this.logger = logger;
 
         boolean created = new File("key_values").mkdir();
-
-        if (!created) {
-            this.logger.log(Level.WARNING, "Value folder cannot created!");
-        }
     }
 
     /**
@@ -59,7 +55,7 @@ public class ValueKey<T extends String> {
      * @return key value
      */
     public Object getKeyValue() {
-        ConfigurationManager data = new ConfigurationManager("key_values", logger);
+        ConfigurationManager data = new ConfigurationManager("key_values/data", logger);
         return data.getValue(key);
     }
 
@@ -67,7 +63,7 @@ public class ValueKey<T extends String> {
      * write value
      */
     public void setKeyValue(String target) {
-        ConfigurationManager data = new ConfigurationManager("key_values", logger);
+        ConfigurationManager data = new ConfigurationManager("key_values/data", logger);
         data.set(key, target);
     }
 

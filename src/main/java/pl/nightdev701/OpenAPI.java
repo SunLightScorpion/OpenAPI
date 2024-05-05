@@ -23,8 +23,7 @@ import pl.nightdev701.logger.standard.DefaultLogger;
 import pl.nightdev701.manager.CryptManager;
 import pl.nightdev701.manager.FileCryptManager;
 import pl.nightdev701.manager.KeyGeneratorManager;
-import pl.nightdev701.network.http.HttpRequestHandler;
-import pl.nightdev701.network.tcp.ProxyAdapter;
+import pl.nightdev701.network.HttpRequestHandler;
 import pl.nightdev701.security.honeypot.SSHHoneypot;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
@@ -218,29 +217,6 @@ public class OpenAPI {
      */
     public static DatabaseConnector getDatabaseManager(DatabaseFormular formular, DatabaseType type, AbstractLogger logger) {
         return new DatabaseConnector(formular, type, logger);
-    }
-
-    /**
-     * proxy server, send data to other target
-     *
-     * @param localPort
-     * @param remoteHost
-     * @param remotePort
-     */
-    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort) {
-        return getProxy(localPort, remoteHost, remotePort, new DefaultLogger());
-    }
-
-    /**
-     * proxy server, send data to other target
-     *
-     * @param localPort
-     * @param remoteHost
-     * @param remotePort
-     * @param logger
-     */
-    public static ProxyAdapter getProxy(int localPort, String remoteHost, int remotePort, AbstractLogger logger) {
-        return new ProxyAdapter(localPort, remoteHost, remotePort, logger);
     }
 
     /**
