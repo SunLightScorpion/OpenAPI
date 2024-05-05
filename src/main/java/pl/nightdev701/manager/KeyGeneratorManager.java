@@ -10,9 +10,9 @@ import java.util.logging.Level;
 
 public class KeyGeneratorManager {
 
+    private final AbstractLogger logger;
     private CryptKeyGenerator generator;
     private boolean print;
-    private final AbstractLogger logger;
 
     public KeyGeneratorManager(CryptType type, AbstractLogger logger) {
         if (type == CryptType.AES) {

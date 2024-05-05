@@ -14,7 +14,6 @@ import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.logger.standard.DefaultLogger;
 
 import java.io.File;
-import java.util.logging.Level;
 
 /**
  * string key
