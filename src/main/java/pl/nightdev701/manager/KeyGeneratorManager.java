@@ -6,10 +6,13 @@ import pl.nightdev701.security.generator.BlowFishGenerator;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.key.CryptKeyGenerator;
 
+import java.util.logging.Level;
+
 public class KeyGeneratorManager {
 
     private CryptKeyGenerator generator;
     private boolean print;
+    private final AbstractLogger logger;
 
     public KeyGeneratorManager(CryptType type, AbstractLogger logger) {
         if (type == CryptType.AES) {
@@ -18,6 +21,7 @@ public class KeyGeneratorManager {
         if (type == CryptType.BLOWFISH) {
             this.generator = new BlowFishGenerator(logger);
         }
+        this.logger = logger;
     }
 
     /**
@@ -35,7 +39,7 @@ public class KeyGeneratorManager {
         String key = generator.generateKey();
 
         if (print) {
-            System.out.println("Crypt Key: " + key);
+            logger.log(Level.INFO, "Crypt Key: " + key);
         }
         return key;
     }
