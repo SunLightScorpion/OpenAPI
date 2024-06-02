@@ -24,6 +24,7 @@ import pl.nightdev701.manager.CryptManager;
 import pl.nightdev701.manager.FileCryptManager;
 import pl.nightdev701.manager.KeyGeneratorManager;
 import pl.nightdev701.network.HttpRequestHandler;
+import pl.nightdev701.network.filter.WebFilter;
 import pl.nightdev701.security.honeypot.SSHHoneypot;
 import pl.nightdev701.util.CryptType;
 import pl.nightdev701.util.stream.OpenPrintStream;
@@ -33,6 +34,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class OpenAPI {
 
@@ -169,7 +171,30 @@ public class OpenAPI {
     }
 
     /**
-     * Redis connectir
+     * Web-Filter with custom logger
+     *
+     * @param port
+     * @param blockList
+     * @param logger
+     * @return
+     */
+    public static WebFilter getWebUrlFilter(int port, List<String> blockList, AbstractLogger logger) {
+        return new WebFilter(port, blockList, logger);
+    }
+
+    /**
+     * Web-Filter
+     *
+     * @param port
+     * @param blockList
+     * @return
+     */
+    public static WebFilter getWebUrlFilter(int port, List<String> blockList) {
+        return getWebUrlFilter(port, blockList, new DefaultLogger());
+    }
+
+    /**
+     * Redis connector
      *
      * @param formular
      * @param logger
