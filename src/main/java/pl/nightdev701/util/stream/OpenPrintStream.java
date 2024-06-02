@@ -23,7 +23,11 @@ public class OpenPrintStream extends PrintStream {
     @Override
     public void println(String x) {
         logger.log(Level.INFO, x);
-        new File("alternative_log.txt").delete();
+        var r = new File("alternative_log.txt").delete();
+
+        if(!r){
+            logger.log(Level.WARNING, "Could not delete alternative_log.txt file");
+        }
     }
 
     @Override
