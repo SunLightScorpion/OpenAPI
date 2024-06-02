@@ -84,7 +84,6 @@ public class OpenAPI {
      * @param key
      * @param type
      * @param logger
-     * @return
      */
     public static FileCryptManager getFileCryptManager(String key, CryptType type, AbstractLogger logger) {
         return new FileCryptManager(key, type, logger);
@@ -95,7 +94,6 @@ public class OpenAPI {
      *
      * @param key
      * @param type
-     * @return
      */
     public static FileCryptManager getFileCryptManager(String key, CryptType type) {
         return new FileCryptManager(key, type, new DefaultLogger());
@@ -106,7 +104,6 @@ public class OpenAPI {
      *
      * @param port
      * @param logger
-     * @return
      */
     public static SSHHoneypot getSshHoneyPot(int port, AbstractLogger logger) {
         return new SSHHoneypot(port, logger);
@@ -116,7 +113,6 @@ public class OpenAPI {
      * ssh honeypot
      *
      * @param port
-     * @return
      */
     public static SSHHoneypot getSshHoneyPot(int port) {
         return getSshHoneyPot(port, new DefaultLogger());
@@ -176,7 +172,6 @@ public class OpenAPI {
      * @param port
      * @param blockList
      * @param logger
-     * @return
      */
     public static WebFilter getWebUrlFilter(int port, List<String> blockList, AbstractLogger logger) {
         return new WebFilter(port, blockList, logger);
@@ -187,7 +182,6 @@ public class OpenAPI {
      *
      * @param port
      * @param blockList
-     * @return
      */
     public static WebFilter getWebUrlFilter(int port, List<String> blockList) {
         return getWebUrlFilter(port, blockList, new DefaultLogger());
