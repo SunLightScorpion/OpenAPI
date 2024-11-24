@@ -152,9 +152,20 @@ public class OpenAPI {
      *
      * @param path
      * @param logger
+     * @param allowLogging
+     */
+    public static ConfigurationManager getConfigurationManager(String path, AbstractLogger logger, boolean allowLogging) {
+        return new ConfigurationManager(path, logger, allowLogging);
+    }
+
+    /**
+     * Config reader
+     *
+     * @param path
+     * @param logger
      */
     public static ConfigurationManager getConfigurationManager(String path, AbstractLogger logger) {
-        return new ConfigurationManager(path, logger);
+        return new ConfigurationManager(path, logger, false);
     }
 
     /**

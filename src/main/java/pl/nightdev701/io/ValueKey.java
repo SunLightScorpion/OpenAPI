@@ -54,7 +54,7 @@ public class ValueKey<T extends String> {
      * @return key value
      */
     public Object getKeyValue() {
-        ConfigurationManager data = new ConfigurationManager("key_values/data", logger);
+        ConfigurationManager data = new ConfigurationManager("key_values/data", logger, false);
         return data.getValue(key);
     }
 
@@ -62,7 +62,7 @@ public class ValueKey<T extends String> {
      * write value
      */
     public void setKeyValue(String target) {
-        ConfigurationManager data = new ConfigurationManager("key_values/data", logger);
+        ConfigurationManager data = new ConfigurationManager("key_values/data", logger, false);
         data.set(key, target);
     }
 

@@ -22,8 +22,9 @@ public class ConfigurationManager {
     private final Map<String, String> dataMap;
     private final String path;
     private final AbstractLogger logger;
+    private final boolean allowLogging;
 
-    public ConfigurationManager(String path, AbstractLogger logger) {
+    public ConfigurationManager(String path, AbstractLogger logger, boolean allowLogging) {
         this.logger = logger;
         if (path.endsWith(".slsd")) {
             this.path = path;
@@ -31,6 +32,7 @@ public class ConfigurationManager {
             this.path = path + ".slsd";
         }
 
+        this.allowLogging = allowLogging;
         this.dataMap = new LinkedHashMap<>();
         readConfig(path);
     }
@@ -44,7 +46,9 @@ public class ConfigurationManager {
             filePath = filePath + ".slsd";
         }
 
-        logger.log(Level.CONFIG, "Read config...");
+        if(allowLogging){
+            logger.log(Level.CONFIG, "Read config...");
+        }
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -58,14 +62,20 @@ public class ConfigurationManager {
                 }
             }
 
-            logger.log(Level.INFO, "Config read!");
+            if(allowLogging){
+                logger.log(Level.INFO, "Config read!");
+            }
         } catch (IOException e) {
             File check = new File(filePath);
 
             if (check.exists()) {
-                logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
+                if(allowLogging){
+                    logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
+                }
             } else {
-                logger.log(Level.INFO, "File was not found, don't worry, the file will be created!");
+                if(allowLogging){
+                    logger.log(Level.INFO, "File was not found, don't worry, the file will be created!");
+                }
             }
         }
     }
@@ -119,7 +129,9 @@ public class ConfigurationManager {
      */
     public void remove(String key) {
         if (!containsKey(key)) {
-            logger.log(Level.WARNING, "Key does not exist: " + key);
+            if(allowLogging){
+                logger.log(Level.WARNING, "Key does not exist: " + key);
+            }
             return;
         }
 
@@ -145,10 +157,14 @@ public class ConfigurationManager {
 
             if (inputFile.delete()) {
                 if (!tempFile.renameTo(inputFile)) {
-                    logger.log(Level.WARNING, "Error while renaming temp file to original file");
+                    if(allowLogging){
+                        logger.log(Level.WARNING, "Error while renaming temp file to original file");
+                    }
                 }
             } else {
-                logger.log(Level.WARNING, "Error while deleting original file");
+                if(allowLogging){
+                    logger.log(Level.WARNING, "Error while deleting original file");
+                }
             }
         } catch (IOException e) {
             logger.log(Level.WARNING, "Error while updating the file: " + e.getMessage());
@@ -163,7 +179,9 @@ public class ConfigurationManager {
     public void add(String base, String value) {
 
         if (isSet(base)) {
-            logger.log(Level.WARNING, "Line already exist: " + base);
+            if(allowLogging){
+                logger.log(Level.WARNING, "Line already exist: " + base);
+            }
             return;
         }
 
@@ -212,7 +230,9 @@ public class ConfigurationManager {
                         logger.log(Level.WARNING, "Error while renaming temp file to original file");
                     }
                 } else {
-                    logger.log(Level.WARNING, "Error while deleting original file");
+                    if(allowLogging){
+                        logger.log(Level.WARNING, "Error while deleting original file");
+                    }
                 }
             } catch (IOException e) {
                 logger.log(Level.WARNING, "Error while updating the file: " + e.getMessage());
