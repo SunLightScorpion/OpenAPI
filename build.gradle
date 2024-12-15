@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 compileJava {
@@ -10,7 +10,7 @@ compileJava {
 String commit = 'git rev-parse --verify --short HEAD'.execute().text.trim()
 
 group 'pl.nightdev701'
-version "SNAPSHOT-2.1-"+commit
+version "SNAPSHOT-2.3-" + (commit as CharSequence)
 
 repositories {
     maven {
