@@ -7,10 +7,8 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
-String commit = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-
 group 'pl.nightdev701'
-version "SNAPSHOT-2.3-" + (commit as CharSequence)
+version "SNAPSHOT-2.3-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
 
 repositories {
     maven {
@@ -44,7 +42,7 @@ java {
 }
 
 jar {
-    println("Build project, git-hash: " + commit)
+    println("Build project, git-hash: " + 'git rev-parse --verify --short HEAD'.execute().text.trim())
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from {
         subprojects.collect { it.sourceSets.main.output }
