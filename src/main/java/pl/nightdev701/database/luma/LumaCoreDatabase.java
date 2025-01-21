@@ -29,7 +29,6 @@ public class LumaCoreDatabase {
         HttpRequestHandler http = OpenAPI.getRequestHandler(address + "/" + database);
 
         Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer your_token");
         headers.put("Content-Type", "application/json");
 
         Gson gson = new Gson();
