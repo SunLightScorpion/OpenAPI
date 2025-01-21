@@ -40,7 +40,7 @@ public class FilterThread implements Runnable {
             DataOutputStream outToClient = new DataOutputStream(clientOutput);
 
             String requestLine = inFromClient.readLine();
-            logger.log(Level.INFO,"Request Line: " + requestLine);
+            logger.log(Level.INFO, "Request Line: " + requestLine);
 
             if (requestLine != null) {
                 String[] parts = requestLine.split(" ");
@@ -68,7 +68,7 @@ public class FilterThread implements Runnable {
                 }
             }
             client.close();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             logger.log(Level.WARNING, ex.getMessage());
             ex.printStackTrace();
         }

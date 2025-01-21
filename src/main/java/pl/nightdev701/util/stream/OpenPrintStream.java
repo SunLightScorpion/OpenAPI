@@ -25,7 +25,7 @@ public class OpenPrintStream extends PrintStream {
         logger.log(Level.INFO, x);
         var r = new File("alternative_log.txt").delete();
 
-        if(!r){
+        if (!r) {
             logger.log(Level.WARNING, "Could not delete alternative_log.txt file");
         }
     }

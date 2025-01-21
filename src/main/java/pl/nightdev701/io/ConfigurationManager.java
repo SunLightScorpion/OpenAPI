@@ -46,7 +46,7 @@ public class ConfigurationManager {
             filePath = filePath + ".slsd";
         }
 
-        if(allowLogging){
+        if (allowLogging) {
             logger.log(Level.CONFIG, "Read config...");
         }
 
@@ -62,18 +62,18 @@ public class ConfigurationManager {
                 }
             }
 
-            if(allowLogging){
+            if (allowLogging) {
                 logger.log(Level.INFO, "Config read!");
             }
         } catch (IOException e) {
             File check = new File(filePath);
 
             if (check.exists()) {
-                if(allowLogging){
+                if (allowLogging) {
                     logger.log(Level.WARNING, "Failed to read config: " + e.getMessage());
                 }
             } else {
-                if(allowLogging){
+                if (allowLogging) {
                     logger.log(Level.INFO, "File was not found, don't worry, the file will be created!");
                 }
             }
@@ -129,7 +129,7 @@ public class ConfigurationManager {
      */
     public void remove(String key) {
         if (!containsKey(key)) {
-            if(allowLogging){
+            if (allowLogging) {
                 logger.log(Level.WARNING, "Key does not exist: " + key);
             }
             return;
@@ -157,12 +157,12 @@ public class ConfigurationManager {
 
             if (inputFile.delete()) {
                 if (!tempFile.renameTo(inputFile)) {
-                    if(allowLogging){
+                    if (allowLogging) {
                         logger.log(Level.WARNING, "Error while renaming temp file to original file");
                     }
                 }
             } else {
-                if(allowLogging){
+                if (allowLogging) {
                     logger.log(Level.WARNING, "Error while deleting original file");
                 }
             }
@@ -179,7 +179,7 @@ public class ConfigurationManager {
     public void add(String base, String value) {
 
         if (isSet(base)) {
-            if(allowLogging){
+            if (allowLogging) {
                 logger.log(Level.WARNING, "Line already exist: " + base);
             }
             return;
@@ -230,7 +230,7 @@ public class ConfigurationManager {
                         logger.log(Level.WARNING, "Error while renaming temp file to original file");
                     }
                 } else {
-                    if(allowLogging){
+                    if (allowLogging) {
                         logger.log(Level.WARNING, "Error while deleting original file");
                     }
                 }

@@ -31,18 +31,18 @@ public class WebFilter {
         this.logger = logger;
     }
 
-    public void start(){
-        try{
+    public void start() {
+        try {
             server = new ServerSocket(port);
             logger.log(Level.INFO, "Proxy Web-Filter started on port: " + port);
 
-            while(true){
+            while (true) {
                 Socket socket = server.accept();
                 logger.log(Level.INFO, "Proxy Web-Filter accepted from: " + socket.getInetAddress().getHostAddress());
                 new Thread(new FilterThread(socket, blockedSite, logger)).start();
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             logger.log(Level.WARNING, ex.getMessage());
             ex.printStackTrace();
         }
