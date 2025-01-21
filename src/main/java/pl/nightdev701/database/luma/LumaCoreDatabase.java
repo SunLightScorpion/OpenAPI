@@ -32,9 +32,8 @@ public class LumaCoreDatabase {
         headers.put("Content-Type", "application/json");
 
         Gson gson = new Gson();
-        String dataToJson = gson.toJson(rec);
 
-        http.makeApiRequest("POST", headers, database);
+        http.makeApiRequest("POST", headers, gson.toJson(rec));
     }
 
 }
