@@ -8,7 +8,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version "SNAPSHOT-2.3-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
+version "SNAPSHOT-3.0.0-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
 
 repositories {
     maven {
