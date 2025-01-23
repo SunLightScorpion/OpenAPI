@@ -10,8 +10,8 @@ https://github.com/NightDev701
 
 */
 
-import com.google.gson.Gson;
 import pl.nightdev701.OpenAPI;
+import pl.nightdev701.json.JsonManager;
 import pl.nightdev701.network.HttpRequestHandler;
 
 import java.util.HashMap;
@@ -31,9 +31,9 @@ public class LumaCoreDatabase {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
 
-        Gson gson = new Gson();
+        JsonManager parser = new JsonManager(rec);
 
-        http.makeApiRequest("POST", headers, gson.toJson(rec));
+        http.makeApiRequest("POST", headers, parser.toJson());
     }
 
 }
