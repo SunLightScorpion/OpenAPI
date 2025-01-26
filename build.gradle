@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '9.0.0-beta4'
+    id 'maven-publish'
 }
 
 compileJava {
@@ -8,7 +9,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version "SNAPSHOT-3.0.0-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
+version = '3.0.0-beta.3'
 
 repositories {
     maven {
@@ -40,7 +41,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
