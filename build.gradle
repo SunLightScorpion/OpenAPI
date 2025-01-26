@@ -9,7 +9,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version = '3.0.0-beta.4'
+version = '3.0.0-beta.6'
 
 repositories {
     maven {
@@ -41,7 +41,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
