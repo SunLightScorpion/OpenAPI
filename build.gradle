@@ -9,7 +9,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version = '3.0.0-beta.9'
+version = '3.0.0-beta.10'
 
 repositories {
     maven {
@@ -50,5 +50,18 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from {
         subprojects.collect { it.sourceSets.main.output }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = uri("https://jitpack.io")
+        }
     }
 }
