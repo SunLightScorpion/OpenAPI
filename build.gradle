@@ -8,7 +8,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version "SNAPSHOT-2.3-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
+version "SNAPSHOT-3.0.0-" + 'git rev-parse --verify --short HEAD'.execute().text.trim()
 
 repositories {
     maven {
@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
-    implementation 'com.mysql:mysql-connector-j:9.1.0'
+    implementation 'com.mysql:mysql-connector-j:9.2.0'
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation 'org.postgresql:postgresql:42.7.5'
@@ -33,6 +33,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.sshd/sshd-core
     implementation 'org.apache.sshd:sshd-core:2.14.0'
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 java {

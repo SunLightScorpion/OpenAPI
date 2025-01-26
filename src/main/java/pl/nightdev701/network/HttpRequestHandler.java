@@ -11,6 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class HttpRequestHandler {
@@ -60,6 +61,40 @@ public class HttpRequestHandler {
             e.printStackTrace();
             logger.log(Level.WARNING, "Request failed: " + e.getMessage());
             return new ArrayList<>();
+        }
+    }
+
+    /**
+     * Makes a REST API request with a specified HTTP method, headers, and optional body.
+     * @param method      The HTTP method (e.g., GET, POST, PUT, DELETE).
+     * @param headers     A map of header key-value pairs.
+     * @param requestBody The request body for methods like POST or PUT, or null if not needed.
+     * @return The response body as a String.
+     */
+    public String makeApiRequest(String method, Map<String, String> headers, String requestBody) {
+        logger.log(Level.INFO, "Making a " + method + " request to " + url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .method(method.toUpperCase(), requestBody != null
+                        ? HttpRequest.BodyPublishers.ofString(requestBody)
+                        : HttpRequest.BodyPublishers.noBody());
+
+        if (headers != null) {
+            headers.forEach(requestBuilder::header);
+        }
+
+        try {
+            HttpRequest request = requestBuilder.build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            logger.log(Level.INFO, "Response received with status code " + response.statusCode());
+            return response.body();
+        } catch (IOException | InterruptedException e) {
+            logger.log(Level.WARNING, "Request failed: " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
     }
 
