@@ -14,14 +14,4 @@ public interface FileCryptoForm {
      */
     void decrypt(String inputFile, String outputFile) throws Exception;
 
-    /**
-     * encrypt file
-     */
-    void encrypt(File inputFile, String outputFile) throws Exception;
-
-    /**
-     * decrypt file
-     */
-    void decrypt(File inputFile, String outputFile) throws Exception;
-
 }
