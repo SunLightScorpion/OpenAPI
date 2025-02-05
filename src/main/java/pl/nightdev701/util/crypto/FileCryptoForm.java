@@ -1,7 +1,5 @@
 package pl.nightdev701.util.crypto;
 
-import java.io.File;
-
 public interface FileCryptoForm {
 
     /**
