@@ -45,8 +45,12 @@ public class ValueKey<T> {
         this.key = key;
         this.logger = logger;
 
-        if (new File("key_values").mkdir()) {
-            logger.log("INFO", "Create data folder for value keys");
+        File file = new File("key_values");
+
+        if (!file.exists()) {
+            if(file.mkdir()){
+                logger.log("INFO", "Create data folder for value keys");
+            }
         }
     }
 
