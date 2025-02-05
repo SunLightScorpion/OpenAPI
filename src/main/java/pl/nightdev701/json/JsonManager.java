@@ -18,11 +18,11 @@ public class JsonManager {
 
     private final HashMap<String, String> data;
 
-    public JsonManager(HashMap<String, String> data){
+    public JsonManager(HashMap<String, String> data) {
         this.data = data;
     }
 
-    public String toJson(){
+    public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(data);
     }

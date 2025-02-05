@@ -273,8 +273,8 @@ public class OpenAPI {
      *
      * @param value
      */
-    public static ValueKey<String> getValueKey(String value, AbstractLogger logger) {
-        return ValueKey.getKey(value, logger);
+    public static ValueKey<String> getValueKey(String namespace, String value, AbstractLogger logger) {
+        return ValueKey.create(namespace, value, logger);
     }
 
     /**
@@ -282,8 +282,8 @@ public class OpenAPI {
      *
      * @param value
      */
-    public static ValueKey<String> getValueKey(String value) {
-        return getValueKey(value, new DefaultLogger());
+    public static ValueKey<String> getValueKey(String namespace, String value) {
+        return getValueKey(namespace, value, new DefaultLogger());
     }
 
     /**

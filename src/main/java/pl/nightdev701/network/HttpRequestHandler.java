@@ -66,6 +66,7 @@ public class HttpRequestHandler {
 
     /**
      * Makes a REST API request with a specified HTTP method, headers, and optional body.
+     *
      * @param method      The HTTP method (e.g., GET, POST, PUT, DELETE).
      * @param headers     A map of header key-value pairs.
      * @param requestBody The request body for methods like POST or PUT, or null if not needed.
