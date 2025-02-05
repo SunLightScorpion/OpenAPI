@@ -36,9 +36,7 @@ public class ValueKey<T> {
     AbstractLogger logger;
 
     /**
-     *
      * Constructor from value key class
-     *
      */
     private ValueKey(String namespace, String key, AbstractLogger logger) {
         this.namespace = namespace;
@@ -48,7 +46,7 @@ public class ValueKey<T> {
         File file = new File("key_values");
 
         if (!file.exists()) {
-            if(file.mkdir()){
+            if (file.mkdir()) {
                 logger.log("INFO", "Create data folder for value keys");
             }
         }
