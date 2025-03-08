@@ -48,3 +48,5 @@ bin/
 /test.dat
 /test_folder/
 /key_values/
+
+*.pem
