@@ -6,13 +6,15 @@ import pl.nightdev701.util.crypto.CryptoForm;
 import javax.crypto.Cipher;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.*;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-import java.util.logging.Level;
 
 public class CryptoRsa implements CryptoForm {
 
