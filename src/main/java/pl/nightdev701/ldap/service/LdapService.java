@@ -13,8 +13,6 @@ https://github.com/NightDev701
 */
 
 import com.unboundid.ldap.sdk.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.nightdev701.ldap.user.LdapUser;
 import pl.nightdev701.logger.AbstractLogger;
 
@@ -27,6 +25,7 @@ public class LdapService {
     private final int ldapPort;
     private final String baseDN;
     private final AbstractLogger logger;
+    private LDAPConnection connection;
 
     public LdapService(String domain, String ldapHost, int ldapPort, String baseDN, AbstractLogger logger) {
         this.domain = domain;
@@ -36,10 +35,22 @@ public class LdapService {
         this.logger = logger;
     }
 
-    public LdapUser authenticate(String username, String password) {
-        LDAPConnection connection = null;
+    public void connect() {
         try {
-            connection = new LDAPConnection(ldapHost, ldapPort);
+            if (connection == null || !connection.isConnected()) {
+                connection = new LDAPConnection(ldapHost, ldapPort);
+            }
+        } catch (LDAPException e) {
+            logger.log(Level.SEVERE, "Connection failed: " + e.getMessage());
+        }
+    }
+
+    public LdapUser authenticate(String username, String password) {
+        try {
+
+            if (connection == null || !connection.isConnected()) {
+                connect();
+            }
 
             String userPrincipal = username.contains("@") ? username : username + "@" + domain;
             BindResult bindResult = connection.bind(userPrincipal, password);
@@ -77,6 +88,16 @@ public class LdapService {
             if (connection != null) {
                 connection.close();
             }
+        }
+    }
+
+    public LDAPConnection getConnection() {
+        return connection;
+    }
+
+    public void closeConnection() {
+        if (connection != null && connection.isConnected()) {
+            connection.close();
         }
     }
 
