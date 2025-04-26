@@ -91,6 +91,10 @@ public class LdapService {
         }
     }
 
+    public boolean isAuthenticated(LdapUser user){
+        return user != null;
+    }
+
     public LDAPConnection getConnection() {
         return connection;
     }
