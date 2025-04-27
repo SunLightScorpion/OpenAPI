@@ -78,7 +78,8 @@ public class LdapService {
             return new LdapUser(
                     userEntry.getAttributeValue("cn"),
                     userEntry.getAttributeValue("mail"),
-                    userDN
+                    userDN,
+                    userEntry.getAttributeValue("sAMAccountName")
             );
 
         } catch (LDAPException ex) {
