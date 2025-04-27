@@ -64,7 +64,7 @@ public class LdapService {
                     baseDN,
                     SearchScope.SUB,
                     "(sAMAccountName=" + username + ")",
-                    "dn", "cn", "mail"
+                    "dn", "cn", "mail", "sAMAccountName"
             );
 
             if (searchResult.getEntryCount() == 0) {
