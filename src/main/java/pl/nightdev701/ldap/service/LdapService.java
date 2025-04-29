@@ -55,6 +55,8 @@ public class LdapService {
             String userPrincipal = username.contains("@") ? username : username + "@" + domain;
             BindResult bindResult = connection.bind(userPrincipal, password);
 
+            logger.log(Level.INFO, "Try to authenticate " + userPrincipal);
+
             if (bindResult.getResultCode() != ResultCode.SUCCESS) {
                 logger.log(Level.WARNING, "Bind failed for user: " + username);
                 return null;
