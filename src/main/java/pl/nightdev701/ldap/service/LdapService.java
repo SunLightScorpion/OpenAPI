@@ -70,12 +70,14 @@ public class LdapService {
             );
 
             if (searchResult.getEntryCount() == 0) {
-                logger.log(Level.WARNING, "User not found after bind: " + username);
+                logger.log(Level.INFO, "User not found after bind: " + username);
                 return null;
             }
 
             SearchResultEntry userEntry = searchResult.getSearchEntries().get(0);
             String userDN = userEntry.getDN();
+
+            logger.log(Level.INFO, "Authenticated: " + username);
 
             return new LdapUser(
                     userEntry.getAttributeValue("cn"),
