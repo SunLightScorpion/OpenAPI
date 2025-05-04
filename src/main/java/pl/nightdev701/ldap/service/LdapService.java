@@ -87,12 +87,8 @@ public class LdapService {
             );
 
         } catch (LDAPException ex) {
-            logger.log(Level.WARNING, "Can't authenticate \"" + username + "\", error: " + ex.getMessage());
+            logger.log(Level.WARNING, "Can't authenticate " + username + ", error: " + ex.getMessage());
             return null;
-        } finally {
-            if (connection != null) {
-                connection.close();
-            }
         }
     }
 
