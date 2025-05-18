@@ -9,7 +9,7 @@ compileJava {
 }
 
 group 'pl.nightdev701'
-version = '3.0.0-release-candidate.1'
+version = 'SNAPSHOT-3.0.1'
 
 repositories {
     maven {
