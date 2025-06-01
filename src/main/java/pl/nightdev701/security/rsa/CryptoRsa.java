@@ -20,12 +20,10 @@ public class CryptoRsa implements CryptoForm {
 
     private final String privateKeyPath;
     private final String publicKeyPath;
-    private final AbstractLogger logger;
 
-    public CryptoRsa(String privateKeyPath, String publicKeyPath, AbstractLogger logger) {
+    public CryptoRsa(String privateKeyPath, String publicKeyPath) {
         this.privateKeyPath = privateKeyPath;
         this.publicKeyPath = publicKeyPath;
-        this.logger = logger;
     }
 
     /**
@@ -34,7 +32,7 @@ public class CryptoRsa implements CryptoForm {
     private PublicKey loadPublicKey() throws Exception {
         byte[] keyBytes = Files.readAllBytes(Paths.get(publicKeyPath));
         String key = new String(keyBytes);
-        key = key.replaceAll("-----.*PUBLIC KEY-----", "").replaceAll("\\s+", ""); // Bereinigung
+        key = key.replaceAll("-----.*PUBLIC KEY-----", "").replaceAll("\\s+", "");
         byte[] decodedKey = Base64.getDecoder().decode(key);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(decodedKey);
@@ -47,7 +45,7 @@ public class CryptoRsa implements CryptoForm {
     private PrivateKey loadPrivateKey() throws Exception {
         byte[] keyBytes = Files.readAllBytes(Paths.get(privateKeyPath));
         String key = new String(keyBytes);
-        key = key.replaceAll("-----.*PRIVATE KEY-----", "").replaceAll("\\s+", ""); // Bereinigung
+        key = key.replaceAll("-----.*PRIVATE KEY-----", "").replaceAll("\\s+", "");
         byte[] decodedKey = Base64.getDecoder().decode(key);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decodedKey);
@@ -63,11 +61,9 @@ public class CryptoRsa implements CryptoForm {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        // Splitte den Text in kleine Blöcke
-        List<String> blocks = splitIntoBlocks(plainText, 245); // Maximalgröße für RSA bei 2048 Bit
+        List<String> blocks = splitIntoBlocks(plainText, 245);
         List<String> encryptedBlocks = encryptBlocks(blocks, cipher);
 
-        // Verbinde verschlüsselte Blöcke
         return String.join(" ", encryptedBlocks);
     }
 
@@ -80,15 +76,12 @@ public class CryptoRsa implements CryptoForm {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
-        // Splitte verschlüsselte Textblöcke und entschlüssle sie
         List<String> encryptedBlocks = List.of(encryptedText.split(" "));
         List<String> decryptedBlocks = decryptBlocks(encryptedBlocks, cipher);
 
-        // Verbinde entschlüsselte Blöcke
         return String.join("", decryptedBlocks);
     }
 
-    // Hilfsmethode zum Aufteilen des Klartexts in Blöcke
     private List<String> splitIntoBlocks(String data, int blockSize) {
         List<String> blocks = new ArrayList<>();
         int length = data.length();
@@ -99,7 +92,6 @@ public class CryptoRsa implements CryptoForm {
         return blocks;
     }
 
-    // Verschlüsselt eine Liste von Blöcken
     private List<String> encryptBlocks(List<String> blocks, Cipher cipher) throws Exception {
         List<String> encryptedBlocks = new ArrayList<>();
         for (String block : blocks) {
@@ -109,7 +101,6 @@ public class CryptoRsa implements CryptoForm {
         return encryptedBlocks;
     }
 
-    // Entschlüsselt eine Liste von verschlüsselten Blöcken
     private List<String> decryptBlocks(List<String> encryptedBlocks, Cipher cipher) throws Exception {
         List<String> decryptedBlocks = new ArrayList<>();
         for (String encryptedBlock : encryptedBlocks) {
@@ -119,7 +110,6 @@ public class CryptoRsa implements CryptoForm {
         return decryptedBlocks;
     }
 
-    // Signiert eine Nachricht mit dem privaten Schlüssel
     public String sign(String message) throws Exception {
         PrivateKey privateKey = loadPrivateKey();
         Signature signature = Signature.getInstance("SHA256withRSA");
@@ -129,7 +119,6 @@ public class CryptoRsa implements CryptoForm {
         return Base64.getEncoder().encodeToString(signedMessage);
     }
 
-    // Verifiziert die Signatur mit dem öffentlichen Schlüssel
     public boolean verify(String message, String signedMessage) throws Exception {
         PublicKey publicKey = loadPublicKey();
         Signature signature = Signature.getInstance("SHA256withRSA");
@@ -138,4 +127,5 @@ public class CryptoRsa implements CryptoForm {
         byte[] decodedSignedMessage = Base64.getDecoder().decode(signedMessage);
         return signature.verify(decodedSignedMessage);
     }
+
 }
