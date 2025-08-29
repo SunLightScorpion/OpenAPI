@@ -33,7 +33,7 @@ public class DefaultLogger extends AbstractLogger {
         }
 
         Logger logger = Logger.getLogger("openapi");
-        logger.log(Level.parse(level.toString()), msg);
+        logger.log(Level.parse(level.toString()), OpenAPI.getClockTime() + " | " + msg);
 
         String result = OpenAPI.getClockTime() + " | " + level + " | " + msg;
 
@@ -42,8 +42,6 @@ public class DefaultLogger extends AbstractLogger {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8));
             writer.write(result + "\n");
             writer.flush();
-
-            System.out.print(result + "\n");
         } catch (IOException e) {
             System.err.print("Failed to log! " + e.getMessage() + "\n");
             e.printStackTrace();
