@@ -26,15 +26,11 @@ public class ConfigurationManager {
 
     public ConfigurationManager(String path, AbstractLogger logger, boolean allowLogging) {
         this.logger = logger;
-        if (path.endsWith(".slsd")) {
-            this.path = path;
-        } else {
-            this.path = path + ".slsd";
-        }
+        this.path = path.endsWith(".slsd") ? path : path + ".slsd";
+        readConfig(this.path);
 
         this.allowLogging = allowLogging;
         this.dataMap = new LinkedHashMap<>();
-        readConfig(path);
     }
 
     /**
@@ -105,23 +101,7 @@ public class ConfigurationManager {
      * check if line exist
      */
     public boolean isSet(String base) {
-        try {
-            FileReader fileReader = new FileReader(path);
-            BufferedReader reader = new BufferedReader(fileReader);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains(base + "=")) {
-                    reader.close();
-                    return true;
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            logger.log(Level.WARNING, "The file was not found: " + e.getMessage());
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Error while reading the file: " + e.getMessage());
-        }
-        return false;
+        return dataMap.containsKey(base);
     }
 
     /**
@@ -137,7 +117,7 @@ public class ConfigurationManager {
 
         try {
             File inputFile = new File(path);
-            File tempFile = new File("tempFile.txt");
+            File tempFile = new File(path + ".tmp");
 
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
@@ -177,7 +157,6 @@ public class ConfigurationManager {
      * add line
      */
     public void add(String base, String value) {
-
         if (isSet(base)) {
             if (allowLogging) {
                 logger.log(Level.WARNING, "Line already exist: " + base);
@@ -206,7 +185,7 @@ public class ConfigurationManager {
         if (isSet(base)) {
             try {
                 File inputFile = new File(path);
-                File tempFile = new File("tempFile.txt");
+                File tempFile = new File(path + ".tmp");
 
                 BufferedReader reader = new BufferedReader(new FileReader(inputFile));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
