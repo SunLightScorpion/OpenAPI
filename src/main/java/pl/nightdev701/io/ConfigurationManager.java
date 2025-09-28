@@ -27,10 +27,11 @@ public class ConfigurationManager {
     public ConfigurationManager(String path, AbstractLogger logger, boolean allowLogging) {
         this.logger = logger;
         this.path = path.endsWith(".slsd") ? path : path + ".slsd";
-        readConfig(this.path);
 
         this.allowLogging = allowLogging;
         this.dataMap = new LinkedHashMap<>();
+
+        readConfig(this.path);
     }
 
     /**
