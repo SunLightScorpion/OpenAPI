@@ -1,6 +1,5 @@
 package pl.nightdev701.security.rsa;
 
-import pl.nightdev701.logger.AbstractLogger;
 import pl.nightdev701.util.crypto.CryptoForm;
 
 import javax.crypto.Cipher;
