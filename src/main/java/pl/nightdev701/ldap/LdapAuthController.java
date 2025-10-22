@@ -22,8 +22,8 @@ public class LdapAuthController {
         this.service = service;
     }
 
-    public LdapUser login(String user, String password) {
-        return service.authenticate(user, password);
+    public LdapUser login(String user, String password, String trust) {
+        return service.authenticate(user, password, trust);
     }
 
 }

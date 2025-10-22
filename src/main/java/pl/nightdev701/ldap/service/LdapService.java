@@ -13,9 +13,18 @@ https://github.com/NightDev701
 */
 
 import com.unboundid.ldap.sdk.*;
+import com.unboundid.util.ssl.SSLUtil;
 import pl.nightdev701.ldap.user.LdapUser;
 import pl.nightdev701.logger.AbstractLogger;
 
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.security.GeneralSecurityException;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.logging.Level;
 
 public class LdapService {
@@ -35,7 +44,7 @@ public class LdapService {
         this.logger = logger;
     }
 
-    public void connect() {
+    private void connectLdap() {
         try {
             if (connection == null || !connection.isConnected()) {
                 connection = new LDAPConnection(ldapHost, ldapPort);
@@ -45,11 +54,43 @@ public class LdapService {
         }
     }
 
-    public LdapUser authenticate(String username, String password) {
+    private void connectLdaps(String trustStorePath) {
+        try {
+            if (connection == null || !connection.isConnected()) {
+                logger.log(Level.INFO, "Trying LDAPS connect to " + ldapHost + ":" + ldapPort);
+
+                KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+                trustStore.load(null, null);
+
+                try (InputStream fis = new FileInputStream(trustStorePath)) {
+                    CertificateFactory cf = CertificateFactory.getInstance("X.509");
+                    Certificate cert = cf.generateCertificate(fis);
+                    trustStore.setCertificateEntry("custom-ca", cert);
+                }
+
+                TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                tmf.init(trustStore);
+
+                SSLUtil sslUtil = new SSLUtil(tmf.getTrustManagers());
+                SSLSocketFactory sslSocketFactory = sslUtil.createSSLSocketFactory();
+
+                connection = new LDAPConnection(sslSocketFactory, ldapHost, ldapPort);
+                logger.log(Level.INFO, "LDAPS connection established using custom CA path.");
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Connection failed: " + e.getMessage());
+        }
+    }
+
+    public LdapUser authenticate(String username, String password, String trust) {
         try {
 
             if (connection == null || !connection.isConnected()) {
-                connect();
+                if (ldapPort == 636) {
+                    connectLdaps(trust);
+                } else {
+                    connectLdap();
+                }
             }
 
             String userPrincipal = username.contains("@") ? username : username + "@" + domain;
