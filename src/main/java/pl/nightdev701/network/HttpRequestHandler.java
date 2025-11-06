@@ -19,6 +19,7 @@ public class HttpRequestHandler {
     private final String url;
     private final AbstractLogger logger;
     private String body;
+    private HttpRequest httpConnection;
 
     public HttpRequestHandler(String url, AbstractLogger logger) {
         this.url = url;
@@ -35,6 +36,8 @@ public class HttpRequestHandler {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .build();
+
+        this.httpConnection = request;
 
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -137,6 +140,14 @@ public class HttpRequestHandler {
      */
     public String getBody() {
         return body;
+    }
+
+    /**
+     * Get http connection
+     * @return httpRequest
+     */
+    public HttpRequest getHttpConnection() {
+        return httpConnection;
     }
 
 }
