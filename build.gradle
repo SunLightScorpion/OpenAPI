@@ -23,7 +23,7 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j:9.3.0'
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    implementation 'org.postgresql:postgresql:42.7.5'
+    implementation 'org.postgresql:postgresql:42.7.14'
 
     // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc
     implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
@@ -32,7 +32,7 @@ dependencies {
     implementation 'redis.clients:jedis:6.0.0'
 
     // https://mvnrepository.com/artifact/org.apache.sshd/sshd-core
-    implementation 'org.apache.sshd:sshd-core:2.15.0'
+    implementation 'org.apache.sshd:sshd-core:3.0.0-M7'
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.13.1'
