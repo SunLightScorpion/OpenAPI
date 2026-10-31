@@ -3,7 +3,6 @@ package pl.nightdev701.network;
 import pl.nightdev701.logger.AbstractLogger;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -57,7 +56,7 @@ public class HttpRequestHandler {
      */
     public List<String> getHtmlLines() {
         try {
-            URL uri = new URL(url);
+            URL uri = URI.create(url).toURL();
             InputStream inputStream = uri.openStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             return reader.lines().toList();
@@ -163,32 +162,59 @@ public class HttpRequestHandler {
     }
 
     /**
-     * Download file from URL
+     * Download file from URL with custom HTTP headers (e.g., X-API-Key)
+     *
+     * @param output  The local file destination path.
+     * @param headers A map of HTTP header key-value pairs.
      */
-    public void download(String output) {
+    public void download(String output, Map<String, String> headers) {
         logger.log(Level.INFO, "Download file to path " + output + " from " + url);
 
-        try {
-            URL downloadUrl = new URL(url);
-            try (
-                    InputStream inputStream = downloadUrl.openStream();
-                    BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-                    FileOutputStream fileOutputStream = new FileOutputStream(output)
-            ) {
-                byte[] bucket = new byte[2048];
-                int numBytesRead;
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET();
 
-                while ((numBytesRead = bufferedInputStream.read(bucket, 0, bucket.length)) != -1) {
-                    fileOutputStream.write(bucket, 0, numBytesRead);
-                }
-            } catch (IOException e) {
-                logger.log(Level.WARNING, "Download failed: " + e.getMessage());
-            }
-            logger.log(Level.INFO, "Download complete!");
-        } catch (MalformedURLException e) {
-            logger.log(Level.WARNING, "Download failed: " + e.getMessage());
-            throw new RuntimeException(e);
+        if (headers != null) {
+            headers.forEach(requestBuilder::header);
         }
+
+        try {
+            HttpRequest request = requestBuilder.build();
+            this.httpConnection = request;
+
+            HttpResponse<InputStream> response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+
+            if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                try (
+                        InputStream inputStream = response.body();
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                        FileOutputStream fileOutputStream = new FileOutputStream(output)
+                ) {
+                    byte[] bucket = new byte[8192];
+                    int numBytesRead;
+
+                    while ((numBytesRead = bufferedInputStream.read(bucket, 0, bucket.length)) != -1) {
+                        fileOutputStream.write(bucket, 0, numBytesRead);
+                    }
+                }
+                logger.log(Level.INFO, "Download complete!");
+            } else {
+                logger.log(Level.WARNING, "Download failed with HTTP status code: " + response.statusCode());
+            }
+        } catch (IOException | InterruptedException e) {
+            logger.log(Level.WARNING, "Download failed: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Download file from URL without headers (Overload for backward compatibility)
+     *
+     * @param output The local file destination path.
+     */
+    public void download(String output) {
+        download(output, null);
     }
 
     /**
@@ -200,6 +226,7 @@ public class HttpRequestHandler {
 
     /**
      * Get HttpRequest connection object
+     *
      * @return httpRequest
      */
     public HttpRequest getHttpConnection() {
